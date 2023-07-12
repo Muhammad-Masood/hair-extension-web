@@ -26,6 +26,7 @@
     "eslint-config-next": "13.4.8",
     "lucide-react": "^0.258.0",
     "next": "13.4.8",
+    "nextjs-current-url": "^1.0.3",
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -33,9 +34,11 @@
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.6",
+    "ts-node": "^10.9.1",
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.0"
+    "@types/bcrypt": "^5.0.0",
+    "prisma": "^5.0.0"
   }
 }
