@@ -22,15 +22,16 @@ export const authOptions: NextAuthOptions = {
             
             async authorize(credentials){
                 if (!credentials?.email || !credentials.password) {
-                    return null;
+                    throw new Error("Invalid Credentials");
                   }
+                  console.log(credentials.email,credentials.password)
                 const user = await prismadb.user.findFirst({
                     where: {
                         email: credentials?.email,
                     }
                 });
-                if(!user || await compare(credentials.password,user.password)){
-                return null
+                if(!user || !await compare(credentials.password,user.password)){
+                    return null;
                 };
                 return {id: user.id.toString(), name:user.name, email:user.email, role:user.role};
             },
@@ -47,18 +48,6 @@ export const authOptions: NextAuthOptions = {
                 role: token.role,
               },
             };
-
-        // async session({token,session}){
-        //     if(token){
-        //         session.user = {
-        //             id : token.id,
-        //             name : token.name,
-        //             email : token.email,
-        //             image : token.picture,
-        //             role: token.role
-        //         }
-        //     }
-        //     return session;
         },
 
         jwt: ({ token, user }) => {
@@ -67,7 +56,7 @@ export const authOptions: NextAuthOptions = {
               return {
                 ...token,
                 id: u.id,
-                randomKey: u.randomKey,
+                role: u.role,
               };
             }
             return token;
@@ -95,11 +84,6 @@ export const authOptions: NextAuthOptions = {
     theme: {
         colorScheme: 'dark'
     },
-    
-    pages: {
-        signOut:'/auth/signin',
-        // signIn:'/'
-    }
 };
 
 const handler = NextAuth(authOptions);
