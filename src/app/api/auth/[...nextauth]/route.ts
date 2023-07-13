@@ -84,6 +84,9 @@ export const authOptions: NextAuthOptions = {
     theme: {
         colorScheme: 'dark'
     },
+    pages: {
+      signIn:'/api/auth/signin'
+    }
 };
 
 const handler = NextAuth(authOptions);

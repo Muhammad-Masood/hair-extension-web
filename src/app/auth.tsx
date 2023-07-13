@@ -11,7 +11,7 @@ export const Access = () => {
       {session?.user ? (
         <button onClick={() => { signOut() }}>Log Out</button> ) 
         : (
-          <button onClick={() => router.push('/auth/signin')}>Log In</button>
+          <button onClick={() => router.push('/api/auth/signin')}>Log In</button>
         )}
     </div>
   )

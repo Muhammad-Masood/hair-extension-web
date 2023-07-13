@@ -9,6 +9,7 @@ export const Navbar = () => {
         </div>
         <div>
             <MainNav className="mx-6"/>
+            
         </div>
         <div className="ml-auto flex items-center">
           
