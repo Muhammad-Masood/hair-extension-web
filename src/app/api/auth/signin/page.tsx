@@ -91,7 +91,7 @@ export  default function LogIn () {
           </div>
           </form>
           </Form>
-          <p>Don't have an account? <Link href="/auth/signup">Sign Up</Link></p>
+          <p>Don't have an account? <Link href="/api/auth/signup">Sign Up</Link></p>
     </div>
   )
 }
