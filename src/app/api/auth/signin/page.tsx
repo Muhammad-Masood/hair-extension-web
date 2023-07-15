@@ -26,7 +26,7 @@ export  default function LogIn () {
        const [loading, setLoading] = useState(false);
        const [error, setError] = useState("");
        const session = useSession();
-
+       const [isAdmin,setAdmin] = useState(false);
        const form = useForm<z.infer<typeof signUpSchema>>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -38,10 +38,11 @@ export  default function LogIn () {
        async function onSubmit (values:z.infer<typeof signInSchema>){
         try{
           setLoading(true);
+
           const res = await signIn("credentials", {
             email: values.email,
             password: values.password,
-            callbackUrl:"/"
+            callbackUrl:'/'
         });
         setLoading(false);
         console.log(session.data?.user.role); 

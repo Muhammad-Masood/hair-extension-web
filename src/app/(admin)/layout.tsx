@@ -1,4 +1,5 @@
 import '../globals.css'
+import { Navbar } from '@/components/admin/Navbar'
 
 export default function AdminLayout({
   children, 
@@ -7,6 +8,7 @@ export default function AdminLayout({
 }) {
   return (
     <div>
+        <Navbar/>
         {children}
         </div>
   )

@@ -18,9 +18,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import { signUpSchema } from "@/components/ui/formSchema"
-
+import { toast } from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 export default function SignUp() {
+  const [loading,setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -33,7 +35,11 @@ export default function SignUp() {
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     const result = await axios.post('/api/users/signup', values);
-    console.log(result.data);
+    if(!result){
+      toast.error("Oops! Something Went Wrong");
+    }
+    toast.success("Account Created Successfully!");
+    redirect('/');
   }
 
   return (

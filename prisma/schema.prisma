@@ -24,4 +24,81 @@ model User {
   phone Int?
   address String?
   role UserRole @default(USER)
+  order Order[]
+}
+
+model Category {
+  id Int @unique @default(autoincrement())
+  name String  
+  product Product[]
+}
+
+model Color {
+  id Int @unique @default(autoincrement())
+  name String  
+  product Product[]
+}
+
+model Length {
+  id Int @unique @default(autoincrement())
+  name Int
+  product Product[]
+}
+
+model Texture {
+  id Int @unique @default(autoincrement())
+  name String
+  product Product[]
+}
+
+model Method {
+  id Int @unique @default(autoincrement())
+  name String
+  product Product[]
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  title String
+  desc String
+  price Decimal
+  categoryId Int
+  colorId Int
+  lengthId Int
+  textureId Int
+  methodId Int
+  image Image[]
+  orderItems Order[]
+  category Category @relation(fields: [categoryId],references: [id])
+  color Color @relation(fields: [colorId],references: [id])
+  size Length @relation(fields: [lengthId],references: [id])
+  texture Texture @relation(fields: [textureId],references: [id])
+  method Method @relation(fields: [methodId],references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([categoryId])
+  @@index([colorId])
+  @@index([lengthId])
+  @@index([textureId])
+  @@index([methodId])
+}
+
+model Image{
+  id Int @id @default(autoincrement())
+  productId Int
+  product Product @relation(fields: [productId],references: [id])
+  @@index([productId])
+}
+
+model Order {
+  id Int @unique @default(autoincrement())
+  productId Int
+  customerId Int
+  product Product @relation(fields: [productId],references: [id])
+  customer User @relation(fields: [customerId],references: [id])
+  isPaid Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([productId])
+  @@index([customerId])
 }

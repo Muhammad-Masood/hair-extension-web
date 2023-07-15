@@ -3,6 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcrypt';
 import prismadb from '@/lib/prismadb';
 import GoogleProvider from "next-auth/providers/google";
+import { redirect } from 'next/navigation';
 
 export const authOptions: NextAuthOptions = {
     session: {  
@@ -30,9 +31,11 @@ export const authOptions: NextAuthOptions = {
                         email: credentials?.email,
                     }
                 });
+                
                 if(!user || !await compare(credentials.password,user.password)){
                     return null;
                 };
+
                 return {id: user.id.toString(), name:user.name, email:user.email, role:user.role};
             },
         }), 

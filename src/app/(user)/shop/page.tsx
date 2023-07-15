@@ -1,6 +1,6 @@
 
 
-export default function Products(){
+export default function Shop(){
     return (
         <div>
             All Products

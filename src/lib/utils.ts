@@ -11,30 +11,30 @@ export const routes = [
       label:'Home',
   },
   {
-      href:'/products',
-      label:'Products',
+      href:'/shop',
+      label:'Shop',
   },
   {
-      href:'/courses',
-      label:'Courses',
+      href:'/training',
+      label:'Training',
+  },
+  {
+    href: '/about',
+    label: 'About'
   }
 ]
 
 export const adminRoutes = [
   {
-      href:'/home',
-      label:'Home',
+      href:'/',
+      label:'Overview',
   },
   {
-      href:'/addproducts',
-      label:'Add Products',
+      href:'/products',
+      label:'Products',
   },
   {
-      href:'/editproducts',
-      label:'Edit Products',
-  },
-  {
-      href:'/upload',
-      label:'Upload Videos',
+      href:'/videos',
+      label:'Videos',
   }
 ]

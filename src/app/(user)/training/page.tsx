@@ -1,6 +1,6 @@
 
 
-export default function Courses(){
+export default function Training(){
     return(
         <div>
           
