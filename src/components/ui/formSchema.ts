@@ -13,3 +13,7 @@ export const signInSchema = z.object({
     email: z.string().email(),
     password: z.string().min(5).max(15),
 });
+
+export const categoryForm = z.object({
+  name:z.string().min(2)
+});

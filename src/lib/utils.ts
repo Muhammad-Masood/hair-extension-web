@@ -36,5 +36,9 @@ export const adminRoutes = [
   {
       href:'/videos',
       label:'Videos',
+  },
+  {
+      href:'/categories',
+      label:'Categories',
   }
 ]
