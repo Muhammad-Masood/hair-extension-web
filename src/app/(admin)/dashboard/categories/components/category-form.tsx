@@ -26,10 +26,12 @@ import prismadb from "@/lib/prismadb"
 
 
 interface CategoryFormProps {
-  data: Category | null
+  initialData: Category | null
 }
 
-export const CategoryForm = () => {
+export const CategoryForm:React.FC<CategoryFormProps>= ({
+  initialData
+}) => {
 
   const form = useForm<z.infer<typeof categoryForm>>({
     resolver: zodResolver(categoryForm),
@@ -38,10 +40,10 @@ export const CategoryForm = () => {
     }
   });
 
-  const title = "Create category";
-  const desc = "Add a new category";
-  const toastMessage = "Category created.";
-  const action = "Create";
+  const title = initialData?"Edit Category" : "Create category";
+  const desc = initialData?"Edit exislting category" : "Add a new category";
+  const toastMessage = initialData?"Category updated." : "Category created.";
+  const action = initialData?"Save Changes" : "Create";
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -49,17 +51,17 @@ export const CategoryForm = () => {
   const onSubmit = async (value: z.infer<typeof categoryForm>) => {
     try {
       setLoading(true);
-
-      // await axios.get('/api/findcategory');
+      if(initialData){
+        await axios.patch(`/api/categories/${initialData.id}`,value);
+      }
+      else{
       await axios.post('/api/categories',value);
+      }
       toast.success(toastMessage);
       router.push('/dashboard/categories');
-      // }
-      // else{
-      //   toast.error("Category already exist.");
-      // }
+      router.refresh();
     } catch (error) {
-      toast.error('Something went wrong.');
+      toast.error('Category already exists.');
       console.log(error);
     } finally {
       setLoading(false);

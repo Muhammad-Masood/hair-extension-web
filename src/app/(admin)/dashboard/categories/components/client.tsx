@@ -6,24 +6,28 @@ import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { Plus } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
+import { CategoryColumn, columns } from "./column"
+import { DataTable } from "@/components/ui/data-table"
 
 interface CategoriesClientProps {
-    length: number
+    data: CategoryColumn[]
 }
 export const CategoriesClient:React.FC<CategoriesClientProps> = ({
-    length
+    data
 }) => {
     const router = useRouter();
     const pathName = usePathname();
     return(
         <div>
             <div className="flex justify-between">
-            <Heading title={`Categories (${length})`} desc="Manage categories for your store"/>
-            <Button onClick={()=>{router.push(`${pathName}/category-page`)}}>
+            <Heading title={`Categories (${data.length})`} desc="Manage categories for your store"/>
+            <Button onClick={()=>{router.push(`${pathName}/0`)}}>
                 <Plus className="h-4 w-4 mr-2"/>
                 Add New
                 </Button>
             </div>
+            <Separator/>
+            <DataTable columns={columns} data={data} searchKey="name"/>
             <Separator/>
             <Heading title="API" desc="API Calls for Categories"/>
             <Separator/>

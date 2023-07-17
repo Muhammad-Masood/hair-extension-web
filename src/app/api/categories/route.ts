@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import { NextResponse } from "next/dist/server/web/spec-extension/response";
 
-interface CategoryValues{
+export interface CategoryValues{
     name:string
 }
 
@@ -12,13 +12,20 @@ export async function POST(
         const body:CategoryValues = await req.json();
         if(!body.name) return new NextResponse("Name is required");
 
+        const categoryFound = await prismadb.category.findFirst({
+            where: {
+                name:body.name
+            }
+        });
+
+        if(!categoryFound){
         const category = await prismadb.category.create({
             data:{
                 name:body.name
             }
         });
-
         return new Response(JSON.stringify(category));
+    }
     } catch(error){
         console.log(`[CATEGORIES_POST]`,error);
         return new NextResponse("Internal Error",{ status: 500 });
