@@ -17,7 +17,6 @@ export async function POST(
                 name:body.name
             }
         });
-
         if(!categoryFound){
         const category = await prismadb.category.create({
             data:{

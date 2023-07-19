@@ -17,3 +17,29 @@ export const signInSchema = z.object({
 export const categoryForm = z.object({
   name:z.string().min(2)
 });
+
+export const colorForm = z.object({
+  name:z.string().min(2)
+});
+export const lengthForm = z.object({
+  name:z.number().min(1)
+});
+export const methodForm = z.object({
+  name:z.string().min(2)
+});
+export const textureForm = z.object({
+  name:z.string().min(2)
+});
+
+export const productForm = z.object({
+  title:z.string().min(2),
+  desc: z.string().min(20),
+  images: z.object({url: z.string()}).array(),
+  price: z.coerce.number().min(1),
+  categoryId: z.number(),
+  colorId: z.number(),
+  textureId: z.number(),
+  methodId: z.number(),
+  lengthId: z.number(),
+  isFeatured: z.boolean().default(false).optional(),
+});

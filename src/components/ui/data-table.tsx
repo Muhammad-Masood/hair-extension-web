@@ -4,6 +4,7 @@ import * as React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import {useEffect} from "react"
 
 import {
   ColumnDef,
@@ -39,9 +40,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([])
 
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-        []
-      )
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
 
   const table = useReactTable({
     data,
@@ -57,6 +56,10 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
   })
+
+  useEffect(()=>{
+    table.setPageSize(5);
+  },[table]);
 
   return (
     <div>

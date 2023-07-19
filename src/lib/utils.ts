@@ -34,11 +34,43 @@ export const adminRoutes = [
       label:'Products',
   },
   {
+      href:'/attributes',
+      label:'Attributes',
+      attributes: [
+        {
+            href:'/categories',
+            label:'Categories',
+        },
+        {
+            href:'/colors',
+            label:'Colors',
+        },
+        {
+            href:'/methods',
+            label:'Methods',
+        },
+        {
+            href:'/textures',
+            label:'Textures',
+        },
+        {
+            href:'/lengths',
+            label:'Lengths',
+        },
+      ]
+  },
+  {
+    href:'/orders',
+    label:'Orders',
+  },
+  {
       href:'/videos',
       label:'Videos',
   },
-  {
-      href:'/categories',
-      label:'Categories',
-  }
 ]
+
+
+export const formatter = Intl.NumberFormat("en-US",{
+  style:"currency",
+  currency:"USD"
+})
