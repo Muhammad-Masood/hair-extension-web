@@ -3,10 +3,9 @@ import { LengthForm } from "../components/length-form"
 
 
 const LengthPage = async ({params}:{params:{lengthId:string}}) => {
-    const lId:number = +(params.lengthId);
     const color = await prismadb.length.findUnique({
         where:{
-            id:lId
+            id:params.lengthId
         }
     })
     return(

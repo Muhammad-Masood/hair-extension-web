@@ -1,7 +1,7 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { CategoryColumn } from "./column"
+import { MethodColumn } from "./column"
 import { Button } from "@/components/ui/button";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
@@ -11,7 +11,7 @@ import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps{
-    data: CategoryColumn;
+    data: MethodColumn;
 }
 
 export const CellAction:React.FC<CellActionProps> = ({
@@ -26,9 +26,9 @@ export const CellAction:React.FC<CellActionProps> = ({
     const onDelete = async () => {
         try{
             setLoading(true);
-            await axios.delete(`/api/categories/${data.id}`,)
-            toast.success("Category deleted");
-            router.push("/dashboard/categories");
+            await axios.delete(`/api/methods/${data.id}`,)
+            toast.success("Method deleted");
+            router.push("/dashboard/methods");
             router.refresh();
         } catch(error){
             toast.error("Something went wrong.");

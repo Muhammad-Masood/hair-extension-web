@@ -13,7 +13,7 @@ export async function PATCH(
         console.log(body);
         const texture = await prismadb.texture.update({
             where: {
-                id: +(params.textureId)
+                id: params.textureId
             },
             data: {
                 name: body.name
@@ -34,7 +34,7 @@ export async function DELETE (req:Request,
         try{
             const texture = await prismadb.texture.delete({
                 where:{
-                    id: +(params.textureId)
+                    id: params.textureId
                 }
             });
 

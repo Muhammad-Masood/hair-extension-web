@@ -13,7 +13,7 @@ export async function PATCH(
         console.log(body);
         const category = await prismadb.category.update({
             where: {
-                id: +(params.categoryId)
+                id: params.categoryId
             },
             data: {
                 name: body.name
@@ -34,7 +34,7 @@ export async function DELETE (req:Request,
         try{
             const category = await prismadb.category.delete({
                 where:{
-                    id: +(params.categoryId)
+                    id: params.categoryId
                 }
             });
 

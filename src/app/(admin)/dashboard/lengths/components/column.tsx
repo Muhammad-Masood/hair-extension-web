@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CellAction } from "./cell-action";
 
 export type LengthColumn = {
-    id:number
+    id:string
     name:number
 }
 

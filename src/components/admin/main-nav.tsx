@@ -13,7 +13,7 @@ import {
 export const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
     const pathName = usePathname();
     return (
-        <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
+        <nav className={cn("flex items-center space-x-4 lg:space-x-6 flex-wrap", className)}>
 
             {adminRoutes.map((route) => (
                 route.label === 'Attributes' ?

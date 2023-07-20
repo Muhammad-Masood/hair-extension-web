@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CellAction } from "./cell-action";
 
 export type ColorColumn = {
-    id:number
+    id:string
     name:string
 }
 

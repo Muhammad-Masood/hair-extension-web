@@ -4,12 +4,12 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CellAction } from "./cell-action";
 
-export type CategoryColumn = {
-    id:number
+export type MethodColumn = {
+    id:string
     name:string
 }
 
-export const columns:ColumnDef<CategoryColumn>[] = [
+export const columns:ColumnDef<MethodColumn>[] = [
     {
         accessorKey:"id",
         header:"Id"

@@ -1,9 +1,9 @@
 "use client"
-import { categoryForm } from "@/components/ui/formSchema"
+import { categoryForm, methodForm } from "@/components/ui/formSchema"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Category } from "@prisma/client"
+import { Method } from "@prisma/client"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -25,43 +25,43 @@ import { usePathname, useRouter } from "next/navigation"
 import prismadb from "@/lib/prismadb"
 
 
-interface CategoryFormProps {
-  initialData: Category | null
+interface MethodFormProps {
+  initialData: Method | null
 }
 
-export const CategoryForm:React.FC<CategoryFormProps>= ({
+export const MethodForm: React.FC<MethodFormProps> = ({
   initialData
 }) => {
 
-  const form = useForm<z.infer<typeof categoryForm>>({
-    resolver: zodResolver(categoryForm),
+  const form = useForm<z.infer<typeof methodForm>>({
+    resolver: zodResolver(methodForm),
     defaultValues: {
       name: ""
     }
   });
 
-  const title = initialData?"Edit Category" : "Create category";
-  const desc = initialData?"Edit exislting category" : "Add a new category";
-  const toastMessage = initialData?"Category updated." : "Category created.";
-  const action = initialData?"Save Changes" : "Create";
+  const title = initialData ? "Edit Method" : "Create method";
+  const desc = initialData ? "Edit exislting method" : "Add a new method";
+  const toastMessage = initialData ? "Method updated." : "Method created.";
+  const action = initialData ? "Save Changes" : "Create";
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (value: z.infer<typeof categoryForm>) => {
+  const onSubmit = async (value: z.infer<typeof methodForm>) => {
     try {
       setLoading(true);
-      if(initialData){
-        await axios.patch(`/api/categories/${initialData.id}`,value);
+      if (initialData) {
+        await axios.patch(`/api/methods/${initialData.id}`, value);
       }
-      else{
-      await axios.post('/api/categories',value);
+      else {
+        await axios.post('/api/methods', value);
       }
       toast.success(toastMessage);
-      router.push('/dashboard/categories');
+      router.push('/dashboard/methods');
       router.refresh();
     } catch (error) {
-      toast.error('Category already exists.');
+      toast.error('Method already exists.');
       console.log(error);
     } finally {
       setLoading(false);
@@ -71,7 +71,7 @@ export const CategoryForm:React.FC<CategoryFormProps>= ({
   return (
     <div>
       <div className="mb-3">
-      <Heading title={title} desc={desc}/>
+        <Heading title={title} desc={desc} />
       </div>
       <Separator />
 
@@ -85,7 +85,7 @@ export const CategoryForm:React.FC<CategoryFormProps>= ({
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input disabled={loading} placeholder="Category name" {...field} />
+                    <Input disabled={loading} placeholder="Method name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

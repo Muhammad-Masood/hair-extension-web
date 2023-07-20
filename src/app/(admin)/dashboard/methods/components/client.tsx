@@ -6,13 +6,13 @@ import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { Plus } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
-import { CategoryColumn, columns } from "./column"
+import { MethodColumn, columns } from "./column"
 import { DataTable } from "@/components/ui/data-table"
 
-interface CategoriesClientProps {
-    data: CategoryColumn[]
+interface MethodsClientProps {
+    data: MethodColumn[]
 }
-export const CategoriesClient:React.FC<CategoriesClientProps> = ({
+export const MethodsClient:React.FC<MethodsClientProps> = ({
     data
 }) => {
     const router = useRouter();
@@ -20,7 +20,7 @@ export const CategoriesClient:React.FC<CategoriesClientProps> = ({
     return(
         <div>
             <div className="flex items-center justify-between mb-3">
-            <Heading title={`Categories (${data.length})`} desc="Manage categories for your store"/>
+            <Heading title={`Methods (${data.length})`} desc="Manage methods for your store"/>
             <Button onClick={()=>{router.push(`${pathName}/0`)}}>
                 <Plus className="h-4 w-4 mr-2"/>
                 Add New
@@ -29,9 +29,9 @@ export const CategoriesClient:React.FC<CategoriesClientProps> = ({
             <Separator/>
             <DataTable  columns={columns} data={data} searchKey="name"/>
             <Separator/>
-            <Heading title="API" desc="API Calls for Categories"/>
+            <Heading title="API" desc="API Calls for Methods"/>
             <Separator/>
-            <ApiList name="categories" idName="categoryId"/>
+            <ApiList name="methods" idName="methodId"/>
         </div>
     )
 }

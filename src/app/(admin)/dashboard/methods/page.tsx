@@ -1,17 +1,17 @@
 import prismadb from "@/lib/prismadb"
-import { CategoriesClient } from "./components/client";
-import { CategoryColumn } from "./components/column";
+import { MethodsClient } from "./components/client";
+import { MethodColumn } from "./components/column";
 
 
 
 export default async function Categories () {
 
-    const categories = await prismadb.category.findMany();
+    const methods = await prismadb.method.findMany();
     
     return(
         <div className="flex-col">
             <div className="flex-1 space-y-4 pt-6 p-8">
-            <CategoriesClient data={categories}/>
+            <MethodsClient data={methods}/>
             </div>
         </div>
     )

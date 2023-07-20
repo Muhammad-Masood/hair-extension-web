@@ -29,7 +29,7 @@ interface TextureFormProps {
   initialData: Texture | null
 }
 
-export const CategoryForm:React.FC<TextureFormProps>= ({
+export const TextureForm:React.FC<TextureFormProps>= ({
   initialData
 }) => {
 

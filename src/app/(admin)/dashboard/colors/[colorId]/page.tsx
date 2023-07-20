@@ -3,10 +3,9 @@ import { ColorForm } from "../components/color-form"
 
 
 const ColorPage = async ({params}:{params:{colorId:string}}) => {
-    const cId:number = +(params.colorId);
     const color = await prismadb.color.findUnique({
         where:{
-            id:cId
+            id:params.colorId
         }
     })
     return(

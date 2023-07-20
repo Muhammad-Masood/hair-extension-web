@@ -18,12 +18,12 @@ export async function POST(
             }
         });
         if(!methodFound){
-        const category = await prismadb.method.create({
+        const method  = await prismadb.method.create({
             data:{
                 name:body.name
             }
         });
-        return new Response(JSON.stringify(category));
+        return new Response(JSON.stringify(method));
     }
     } catch(error){
         console.log(`[METHODS_POST]`,error);

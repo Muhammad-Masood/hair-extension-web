@@ -15,7 +15,7 @@ export async function POST(
     try{
         const body = await req.json();
         const { images, title, price, categoryId, desc, colorId, lengthId, methodId,textureId, isFeatured } = body;
-
+        console.log(images,title,price,categoryId, desc, colorId, lengthId, methodId,textureId, isFeatured);
         if(!title) return new NextResponse("Name is required");
         if(!images) return new NextResponse("Image is required");
         if(!price) return new NextResponse("Price is required");

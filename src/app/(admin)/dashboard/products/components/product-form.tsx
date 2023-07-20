@@ -57,11 +57,11 @@ export const ProductForm:React.FC<ProductFormProps>= ({
       title: "",
       images: [],
       price: 0,
-      categoryId:0,
-      colorId:0,
-      textureId:0,
-      methodId:0,
-      lengthId:0
+      categoryId:"",
+      colorId:"",
+      textureId:"",
+      methodId:"",
+      lengthId:""
     }
   });
 
@@ -154,7 +154,7 @@ export const ProductForm:React.FC<ProductFormProps>= ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Category</FormLabel>
-                  <Select disabled={loading} onValueChange={field.onChange.toString} value={field.value.toString()} defaultValue={field.value.toString()}>
+                  <Select disabled={loading} onValueChange= {field.onChange} value={field.value} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue defaultValue={field.value} placeholder="Select a category" />

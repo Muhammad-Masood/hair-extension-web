@@ -28,31 +28,32 @@ model User {
 }
 
 model Category {
-  id Int @unique @default(autoincrement())
+  // id Int @unique @default(autoincrement())
+  id String @unique @default(uuid())
   name String  
   product Product[] 
 }
 
 model Color {
-  id Int @unique @default(autoincrement())
+  id String @unique @default(uuid())
   name String  
   product Product[]
 }
 
 model Length {
-  id Int @unique @default(autoincrement())
+  id String @unique @default(uuid())
   name Int
   product Product[] 
 }
 
 model Texture {
-  id Int @unique @default(autoincrement())
+  id String @unique @default(uuid())
   name String
   product Product[]
 }
 
 model Method {
-  id Int @unique @default(autoincrement())
+  id String @unique @default(uuid())
   name String
   product Product[]
 }
@@ -63,18 +64,18 @@ model Product {
   desc String
   price Decimal
   isFeatured Boolean
-  categoryId Int
-  colorId Int
-  lengthId Int
-  textureId Int
-  methodId Int
+  categoryId String
+  colorId String
+  lengthId String
+  textureId String
+  methodId String
   images Image[]
   orderItems Order[]
   category Category @relation(fields: [categoryId], references: [id])
-  color Color @relation(fields: [colorId],references: [id])
-  length Length @relation(fields: [lengthId],references: [id])
-  texture Texture @relation(fields: [textureId],references: [id])
-  method Method @relation(fields: [methodId],references: [id])
+  color Color? @relation(fields: [colorId],references: [id])
+  length Length? @relation(fields: [lengthId],references: [id])
+  texture Texture? @relation(fields: [textureId],references: [id])
+  method Method? @relation(fields: [methodId],references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   @@index([categoryId])

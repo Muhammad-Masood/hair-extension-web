@@ -7,18 +7,19 @@ import { format } from "date-fns";
 export default async function Products () {
 
     const products = await prismadb.product.findMany(
-        {
-        include: {
-            category: true,
-            length: true,
-            color: true,
-            texture: true,
-            method: true,
-          },
-          orderBy: {
-            createdAt: 'desc'
-          }
-        }
+         {
+         include: {
+             category: true,
+             images:true
+        //     length: true,
+        //     color: true,
+        //     texture: true,
+        //     method: true,
+           },
+           orderBy: {
+             createdAt: 'desc'
+           }
+         }
     );
 
     console.log(products);
@@ -31,11 +32,12 @@ export default async function Products () {
             isFeatured: item.isFeatured,
             //isArchived: item.isArchived,
             price: formatter.format(item.price.toNumber()),
-            category: item.category.name,
-            length: item.length.name,
-            color: item.color.name,
-            texture: item.texture.name,
-            method: item.method.name,
+            category:item.category.name,
+            imageUrl:item.images[0].url,
+            // length: item.lengthId,
+            // color: item.color.name,
+            // texture: item.texture.name,
+            // method: item.method.name,
             createdAt: format(item.createdAt, 'MMMM do, yyyy'),
         }
     ));
