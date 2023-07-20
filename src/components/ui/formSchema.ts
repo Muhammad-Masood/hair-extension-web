@@ -31,10 +31,15 @@ export const textureForm = z.object({
   name:z.string().min(2)
 });
 
+export const videoForm = z.object({
+  title:z.string().min(3),
+  video:z.object({url:z.string()})
+});
+
 export const productForm = z.object({
   title:z.string().min(2),
   desc: z.string().min(20),
-  images: z.object({url: z.string()}).array(),
+  images: z.object({url: z.string()}).array().min(1),
   price: z.coerce.number().min(1),
   categoryId: z.number(),
   colorId: z.number(),

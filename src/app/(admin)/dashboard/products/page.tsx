@@ -4,19 +4,39 @@ import { ProductColumn } from "./components/column";
 import { formatter } from "@/lib/utils";
 import { format } from "date-fns";
 
-
-
 export default async function Products () {
 
-    const products = await prismadb.product.findMany();
-
-    const formattedProducts = products.map((item)=>(
+    const products = await prismadb.product.findMany(
         {
-            id:item.id,
-            image:"",
-            title:item.title,
-            price:formatter.format(item.price.toNumber()),
-            createdAt:format(item.createdAt,"MMMM do, yyyy"),
+        include: {
+            category: true,
+            length: true,
+            color: true,
+            texture: true,
+            method: true,
+          },
+          orderBy: {
+            createdAt: 'desc'
+          }
+        }
+    );
+
+    console.log(products);
+
+    const formattedProducts:ProductColumn[] = products.map((item)=>(
+        {
+            id: item.id,
+            title: item.title,
+            desc: item.desc,
+            isFeatured: item.isFeatured,
+            //isArchived: item.isArchived,
+            price: formatter.format(item.price.toNumber()),
+            category: item.category.name,
+            length: item.length.name,
+            color: item.color.name,
+            texture: item.texture.name,
+            method: item.method.name,
+            createdAt: format(item.createdAt, 'MMMM do, yyyy'),
         }
     ));
     

@@ -30,7 +30,7 @@ model User {
 model Category {
   id Int @unique @default(autoincrement())
   name String  
-  product Product[]
+  product Product[] 
 }
 
 model Color {
@@ -42,7 +42,7 @@ model Color {
 model Length {
   id Int @unique @default(autoincrement())
   name Int
-  product Product[]
+  product Product[] 
 }
 
 model Texture {
@@ -68,9 +68,9 @@ model Product {
   lengthId Int
   textureId Int
   methodId Int
-  image Image[]
+  images Image[]
   orderItems Order[]
-  category Category @relation(fields: [categoryId],references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
   color Color @relation(fields: [colorId],references: [id])
   length Length @relation(fields: [lengthId],references: [id])
   texture Texture @relation(fields: [textureId],references: [id])
@@ -103,4 +103,11 @@ model Order {
   updatedAt DateTime @updatedAt
   @@index([productId])
   @@index([customerId])
+}
+
+model Video{
+  id Int @unique @default(autoincrement())
+  title String
+  video String
+  createdAt DateTime @default(now())
 }

@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials?.email || !credentials.password) {
                     throw new Error("Invalid Credentials");
                   }
-                  console.log(credentials.email,credentials.password)
+                 
                 const user = await prismadb.user.findFirst({
                     where: {
                         email: credentials?.email,

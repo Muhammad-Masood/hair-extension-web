@@ -5,11 +5,16 @@ import { Button } from "@/components/ui/button";
 import { CellAction } from "./cell-action";
 
 export type ProductColumn = {
-    id: number;
-    image:string
+    id: number
     title:string
+    desc:string
     price:string
     createdAt:string
+    category: string
+    length: number
+    texture: string
+    method: string
+    color: string
 }
 
 export const columns:ColumnDef<ProductColumn>[] = [

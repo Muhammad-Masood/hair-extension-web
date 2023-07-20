@@ -1,5 +1,5 @@
 import prismadb from "@/lib/prismadb";
-import { ProductValues } from "../route";
+// import {  } from "../route";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
@@ -8,21 +8,37 @@ export async function PATCH(
     ) {
 
     try {
-        const body: ProductValues = await req.json();
+        const body = await req.json();
+        const { images, title, price, categoryId, desc, colorId, lengthId, methodId,textureId, isFeatured } = body;
         console.log(body);
         const product = await prismadb.product.update({
             where: {
                 id: +(params.productId)
             },
             data: {
-                title: body.title
+                title,
+                desc,
+                price,
+                isFeatured,
+                categoryId,
+                lengthId,
+                colorId,
+                methodId,
+                textureId,
+                images:{
+                    createMany:{
+                        data: [
+                            ...images.map((image:{url:string})=>image),
+                        ],
+                    },
+                },
             }
         });
 
         return new Response(JSON.stringify(product));
     }
     catch (error) {
-        console.log('[PRODUCTS_PATCH]', error);
+        console.log('[PRODUCT_PATCH]', error);
         return new NextResponse("Internal error", { status: 500 })
     }
 }
@@ -33,12 +49,12 @@ export async function DELETE (req:Request,
         try{
             const product = await prismadb.product.delete({
                 where:{
-                    id: +(params.productId)
-                }
+                    id: +(params.productId),
+                },
             });
 
-            return new Response(JSON.stringify([product]));
+            return new Response(JSON.stringify(product));
         } catch(error){
-            console.log(`[PRODUCTS_DELETE]`,error);
+            console.log(`[PRODUCT_DELETE]`,error);
         }
 }

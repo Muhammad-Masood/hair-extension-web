@@ -102,7 +102,7 @@ export const ProductForm:React.FC<ProductFormProps>= ({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-          <div className="md:grid md:grid-cols-3 gap-8 mt-1">
+          <div className="md:grid gap-8 mt-1">
           <FormField
               control={form.control}
               name="images"

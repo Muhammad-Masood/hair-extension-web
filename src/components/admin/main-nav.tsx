@@ -17,7 +17,7 @@ export const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElemen
 
             {adminRoutes.map((route) => (
                 route.label === 'Attributes' ?
-                    <HoverCard>
+                    <HoverCard openDelay={0} closeDelay={0} key={route.label}>
                         <HoverCardTrigger href="/dashboard/attributes" className={cn("text-sm font-medium transition-colors hover:text-amber-500",
                             pathName === route.href ? 'text-amber-500' : 'text-white')}
                         >Attributes</HoverCardTrigger>
@@ -31,7 +31,7 @@ export const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElemen
                         </HoverCardContent>
                     </HoverCard>
                     :
-                    (<Link href={`/dashboard${route.href}`}
+                    (<Link href={`/dashboard${route.href}`} key={route.label}
                         className={cn("text-sm font-medium transition-colors hover:text-amber-500",
                             pathName === route.href ? 'text-amber-500' : 'text-white')}
                     >{route.label}</Link>)
