@@ -23,7 +23,7 @@ export const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElemen
                         >Attributes</HoverCardTrigger>
                         <HoverCardContent className="flex flex-col">
                             {route.attributes?.map((a)=>(
-                                (<Link href={`/dashboard${a.href}`}
+                                (<Link href={`/dashboard${a.href}`} key={a.href}
                                 className={cn("text-sm font-medium transition-colors hover:text-amber-500 p-2",
                                     pathName === a.href ? 'text-amber-500' : 'text-white')}
                             >{a.label}</Link>)

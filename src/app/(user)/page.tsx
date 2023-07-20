@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react"
 import { authOptions } from "../api/auth/[...nextauth]/route";
 // import { ProfileForm } from "@/components/ui/inputForm";
 
-export default async function Page(){
+export default function Page(){
     
     return(
         <div>
