@@ -9,6 +9,9 @@ import { formatter } from "@/lib/utils";
 export default async function Orders () {
 
     const orders = await prismadb.order.findMany({
+        include:{
+            product:true
+        },
         orderBy:{
             createdAt:"desc",
         },
@@ -17,12 +20,13 @@ export default async function Orders () {
     const formattedOrders:OrderColumn[] = orders.map((order)=>(
         {
             id:order.id,
-            isPaid: order.isPaid,
-            productId: order.productId,
-            // totalPrice: formatter.format(order..reduce((total, item) => {
+            product: order.product.title,
+            // productId: orde
+            //productId: order.,
+            // totalPrice: formatter.format(order.((total, item) => {
             //     return total + Number(item.product.price)
             //   }, 0)),
-            customerId: order.customerId,
+            //customerId: order.customerId,
             createdAt: format(order.createdAt, 'MMMM do, yyyy'),
         }
     ));

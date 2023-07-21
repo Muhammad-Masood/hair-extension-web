@@ -5,7 +5,7 @@
   "scripts": {
     "seed": "node prisma/seed.js",
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -31,14 +31,17 @@
     "bcrypt": "^5.1.0",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
+    "cors": "^2.8.5",
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "lucide-react": "^0.258.0",
+    "multer": "^1.4.5-lts.1",
     "next": "13.4.8",
     "next-cloudinary": "^4.14.1",
     "nextjs-current-url": "^1.0.3",
+    "open": "^9.1.0",
     "postcss": "8.4.25",
     "query-string": "^8.1.0",
     "react": "18.2.0",
@@ -50,6 +53,7 @@
     "tailwindcss-animate": "^1.0.6",
     "ts-node": "^10.9.1",
     "typescript": "5.1.6",
+    "youtube-api": "^3.0.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {

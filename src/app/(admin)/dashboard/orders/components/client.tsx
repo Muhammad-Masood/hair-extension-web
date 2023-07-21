@@ -25,9 +25,9 @@ export const OrdersClient:React.FC<OrdersClientProps> = ({
             <Separator/>
             <DataTable  columns={columns} data={data} searchKey="name"/>
             <Separator/>
-            <Heading title="API" desc="API Calls for Categories"/>
+            <Heading title="API" desc="API Calls for Orders"/>
             <Separator/>
-            <ApiList name="categories" idName="categoryId"/>
+            <ApiList name="orders" idName="orderId"/>
         </div>
     )
 }

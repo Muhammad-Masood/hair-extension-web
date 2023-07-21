@@ -36,7 +36,7 @@ export const LengthForm:React.FC<LengthFormProps>= ({
   const form = useForm<z.infer<typeof lengthForm>>({
     resolver: zodResolver(lengthForm),
     defaultValues: {
-      name: ""
+      name: 0,
     }
   });
 

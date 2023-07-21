@@ -13,7 +13,7 @@ export async function PATCH(
         console.log(body);
         const color = await prismadb.color.update({
             where: {
-                id: +(params.colorId)
+                id: params.colorId
             },
             data: {
                 name: body.name
@@ -34,7 +34,7 @@ export async function DELETE (req:Request,
         try{
             const color = await prismadb.color.delete({
                 where:{
-                    id: +(params.colorId)
+                    id: params.colorId
                 }
             });
 

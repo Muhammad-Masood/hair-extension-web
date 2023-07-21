@@ -12,7 +12,7 @@ export async function PATCH(
         console.log(body);
         const length = await prismadb.length.update({
             where: {
-                id: +(params.lengthId)
+                id: params.lengthId
             },
             data: {
                 name: body.name
@@ -33,7 +33,7 @@ export async function DELETE (req:Request,
         try{
             const length = await prismadb.length.delete({
                 where:{
-                    id: +(params.lengthId)
+                    id: params.lengthId
                 }
             });
 

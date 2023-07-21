@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState,useEffect } from "react";
 import { Session, getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { User2 } from "lucide-react";
 
 // const isSession = async () => {

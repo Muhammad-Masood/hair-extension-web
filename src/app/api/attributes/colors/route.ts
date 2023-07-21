@@ -36,8 +36,8 @@ export async function GET(
     req: Request
 ){
     try{
-        const categories = await prismadb.color.findMany();
-        return NextResponse.json(categories);
+        const colors = await prismadb.color.findMany();
+        return NextResponse.json(colors);
     } catch(error){
         console.log('[COLORS_GET]',error);
         return new NextResponse("Internal error", {status: 500});

@@ -5,7 +5,7 @@ import prismadb from '@/lib/prismadb';
 import GoogleProvider from "next-auth/providers/google";
 import { redirect } from 'next/navigation';
 
-export const authOptions: NextAuthOptions = {
+ const authOptions: NextAuthOptions = {
     session: {  
         strategy:'jwt'
     },

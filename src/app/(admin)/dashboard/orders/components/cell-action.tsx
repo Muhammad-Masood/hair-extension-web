@@ -23,12 +23,12 @@ export const CellAction:React.FC<CellActionProps> = ({
     const [loading,setLoading] = useState(false);
     const [open,setOpen] = useState(false);
     
-    const onDelete = async () => {
+    const onCancel = async () => {
         try{
             setLoading(true);
-            await axios.delete(`/api/categories/${data.id}`,)
-            toast.success("Category deleted");
-            router.push("/dashboard/categories");
+            await axios.delete(`/api/orders/${data.id}`,)
+            toast.success("Order Cancelled");
+            router.push("/dashboard/orders");
             router.refresh();
         } catch(error){
             toast.error("Something went wrong.");
@@ -42,7 +42,7 @@ export const CellAction:React.FC<CellActionProps> = ({
         <AlertModal 
         isOpen={open} 
         onClose={() => setOpen(false)}
-        onConfirm={onDelete}
+        onConfirm={onCancel}
         loading={loading}
       />
         <DropdownMenu>
@@ -56,14 +56,9 @@ export const CellAction:React.FC<CellActionProps> = ({
                 <DropdownMenuLabel>
                     Actions
                 </DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => {router.push(`${pathName}/${data.id}`)}}>
-                    <Edit className="mr-2 h-4 w-4"/>
-                    Update
-                </DropdownMenuItem>
-              
                 <DropdownMenuItem onClick={()=>setOpen(true)}>
                     <Trash className="mr-2 h-4 w-4"/>
-                    Delete
+                    Cancel
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
