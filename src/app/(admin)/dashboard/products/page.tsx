@@ -34,10 +34,6 @@ export default async function Products () {
             price: formatter.format(item.price.toNumber()),
             category:item.category.name,
             imageUrl:item.images[0].url,
-            // length: item.lengthId,
-            // color: item.color.name,
-            // texture: item.texture.name,
-            // method: item.method.name,
             createdAt: format(item.createdAt, 'MMMM do, yyyy'),
         }
     ));

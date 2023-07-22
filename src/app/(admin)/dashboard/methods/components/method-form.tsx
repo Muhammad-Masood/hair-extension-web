@@ -52,10 +52,10 @@ export const MethodForm: React.FC<MethodFormProps> = ({
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/methods/${initialData.id}`, value);
+        await axios.patch(`/api/attributes/methods/${initialData.id}`, value);
       }
       else {
-        await axios.post('/api/methods', value);
+        await axios.post('/api/attributes/methods', value);
       }
       toast.success(toastMessage);
       router.push('/dashboard/methods');

@@ -16,7 +16,8 @@ export const ApiList:React.FC<ApiListProps> = ({
 }) => {
     const params = useParams();
     const origin = useOrigin();
-    const baseUrl = `${origin}/api` 
+    const baseUrl = name === "colors" || name === "methods" || name === "textures" || name === "lengths"?  
+    `${origin}/api/attributes` : `${origin}/api`;
     return(
         <>
         <ApiAlert 

@@ -58,3 +58,19 @@ export async function DELETE (req:Request,
             console.log(`[PRODUCT_DELETE]`,error);
         }
 }
+
+export async function GET (req:Request,
+    {params} : {params:{productId:string}}){
+
+        try{
+            const product = await prismadb.product.findUnique({
+                where:{
+                    id: +(params.productId),
+                },
+            });
+
+            return new Response(JSON.stringify(product));
+        } catch(error){
+            console.log(`[SPECIFIC_PRODUCT_GET]`,error);
+        }
+}

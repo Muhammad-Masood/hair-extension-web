@@ -50,10 +50,10 @@ export const ColorForm:React.FC<ColorFormProps>= ({
     try {
       setLoading(true);
       if(initialData){
-        await axios.patch(`/api/colors/${initialData.id}`,value);
+        await axios.patch(`/api/attributes/colors/${initialData.id}`,value);
       }
       else{
-      await axios.post('/api/colors',value);
+      await axios.post('/api/attributes/colors',value);
       }
       toast.success(toastMessage);
       router.push('/dashboard/colors');

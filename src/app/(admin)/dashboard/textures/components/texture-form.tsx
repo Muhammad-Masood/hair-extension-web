@@ -52,10 +52,10 @@ export const TextureForm:React.FC<TextureFormProps>= ({
     try {
       setLoading(true);
       if(initialData){
-        await axios.patch(`/api/textures/${initialData.id}`,value);
+        await axios.patch(`/api/attributes/textures/${initialData.id}`,value);
       }
       else{
-      await axios.post('/api/textures',value);
+      await axios.post('/api/attributes/textures',value);
       }
       toast.success(toastMessage);
       router.push('/dashboard/textures');

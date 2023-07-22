@@ -43,3 +43,19 @@ export async function DELETE (req:Request,
             console.log(`[CATEGORY_DELETE]`,error);
         }
 }
+
+export async function GET (req:Request,
+    {params} : {params:{categoryId:string}}){
+
+        try{
+            const category = await prismadb.category.findUnique({
+                where:{
+                    id: params.categoryId
+                }
+            });
+
+            return new Response(JSON.stringify(category));
+        } catch(error){
+            console.log(`[SPECIFIC_CATEGORY_GET]`,error);
+        }
+}

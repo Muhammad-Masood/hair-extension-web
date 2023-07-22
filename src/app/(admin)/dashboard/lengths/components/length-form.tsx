@@ -52,10 +52,10 @@ export const LengthForm:React.FC<LengthFormProps>= ({
     try {
       setLoading(true);
       if(initialData){
-        await axios.patch(`/api/lengths/${initialData.id}`,value);
+        await axios.patch(`/api/attributes/lengths/${initialData.id}`,value);
       }
       else{
-      await axios.post('/api/lengths',value);
+      await axios.post('/api/attributes/lengths',value);
       }
       toast.success(toastMessage);
       router.push('/dashboard/lengths');
