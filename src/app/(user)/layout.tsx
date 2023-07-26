@@ -1,7 +1,8 @@
-// "use client"
-import { Navbar } from '@/components/Navbar'
+ "use client"
+import Footer from '@/components/Footer'
 import '../globals.css'
-import { Footer } from '@/components/Footer'
+
+import Navbar from '@/components/Navbar'
 // import { SessionProvider, useSession } from 'next-auth/react'
 // import { useRouter } from 'next/navigation'
 
@@ -17,7 +18,8 @@ export default function UserLayout({
   // }
   return (
     <div>
-        <Navbar/>
+      <Navbar/>
+        {/* <Navbar/> */}
         {children}
         <Footer/>
         </div>

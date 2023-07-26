@@ -7,7 +7,7 @@ export const Access = () => {
   const { data: session } = useSession();
   const router = useRouter();
   return (
-    <div>
+    <div className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
       {session?.user ? (  
         <button onClick={() => { signOut() }}>Log Out</button> ) 
         : (

@@ -37,7 +37,10 @@ export async function GET(
 ){
     try{
         const categories = await prismadb.category.findMany();
-        return NextResponse.json(categories);
+        if(categories) {return NextResponse.json(categories)}
+        else{
+            return null;
+        }
     } catch(error){
         console.log('[CATEGORIES_GET]',error);
         return new NextResponse("Internal error", {status: 500});

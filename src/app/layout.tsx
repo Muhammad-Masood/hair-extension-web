@@ -1,8 +1,9 @@
+"use client"
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { ToasterProvider } from '../../providers/toast-provider'
-import { Navbar } from '@/components/Navbar'
 import SessionProvider from '../../providers/session-provider'
+import { ThemeProvider } from 'next-themes'
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,12 +16,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='dark'>
-      <body className="dark:bg-zinc-950">
+    <html lang="en">
+      {/* <body className="dark:bg-zinc-950"> */}
+      <body>
+        <ThemeProvider attribute='class'>
         <SessionProvider>
         <ToasterProvider/>
         {children}
         </SessionProvider>
+        </ThemeProvider>
         </body>
     </html>
   )

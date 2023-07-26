@@ -7,16 +7,26 @@ export function cn(...inputs: ClassValue[]) {
 
 export const routes = [
   {
-      href:'/',
-      label:'Home',
+    href: '/',
+    label: 'Home',
   },
   {
-      href:'/shop',
-      label:'Shop',
+    href: '/shop',
+    label: 'Shop',
+    attributes: [
+      {
+        href: '/products',
+        label: 'Products',
+      },
+      {
+        href: '/hairext',
+        label: 'Hair Extensions',
+      },
+    ]
   },
   {
-      href:'/training',
-      label:'Training',
+    href: '/training',
+    label: 'Training',
   },
   {
     href: '/about',
@@ -26,51 +36,51 @@ export const routes = [
 
 export const adminRoutes = [
   {
-      href:'/',
-      label:'Overview',
+    href: '/',
+    label: 'Overview',
   },
   {
-      href:'/products',
-      label:'Products',
+    href: '/products',
+    label: 'Products',
   },
   {
-      href:'/attributes',
-      label:'Attributes',
-      attributes: [
-        {
-            href:'/categories',
-            label:'Categories',
-        },
-        {
-            href:'/colors',
-            label:'Colors',
-        },
-        {
-            href:'/methods',
-            label:'Methods',
-        },
-        {
-            href:'/textures',
-            label:'Textures',
-        },
-        {
-            href:'/lengths',
-            label:'Lengths',
-        },
-      ]
+    href: '/attributes',
+    label: 'Attributes',
+    attributes: [
+      {
+        href: '/categories',
+        label: 'Categories',
+      },
+      {
+        href: '/colors',
+        label: 'Colors',
+      },
+      {
+        href: '/methods',
+        label: 'Methods',
+      },
+      {
+        href: '/textures',
+        label: 'Textures',
+      },
+      {
+        href: '/lengths',
+        label: 'Lengths',
+      },
+    ]
   },
   {
-    href:'/orders',
-    label:'Orders',
+    href: '/orders',
+    label: 'Orders',
   },
   {
-      href:'/videos',
-      label:'Videos',
+    href: '/videos',
+    label: 'Videos',
   },
 ]
 
 
-export const formatter = Intl.NumberFormat("en-US",{
-  style:"currency",
-  currency:"USD"
+export const formatter = Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
 })
