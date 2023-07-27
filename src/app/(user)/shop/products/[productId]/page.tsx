@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ModalToBuy from '@/components/modals/ModalToBuy';
 import { useRouter } from 'next/navigation'
+
 interface Product {
   id: number;
   title: string;
@@ -18,6 +19,11 @@ interface Product {
   createdAt: string;
   updatedAt: string;
 }
+
+
+//   Route:  /api/products/${productId}
+//   Displays one product on whole page
+
 
 // const product = {
 //   id: 3,
@@ -36,7 +42,7 @@ interface Product {
 
 // }
 
-const ProductPage = ({ params: { slug } }: { params: { slug: string } }) => {
+const ProductPage = ({ params: { productId } }: { params: { productId: string } }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter()
 
@@ -57,7 +63,7 @@ const ProductPage = ({ params: { slug } }: { params: { slug: string } }) => {
 
   async function fetchData() {
     try {
-      const res = await axios.get(`/api/products/${slug}`)
+      const res = await axios.get(`/api/products/${productId}`)
 
       console.log({ res });
 

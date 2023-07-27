@@ -106,7 +106,7 @@ const Navbar = async () => {
                         <HoverCardTrigger className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={route.href} >Shop</HoverCardTrigger>
                         <HoverCardContent className="flex w-auto flex-col px-4 py-3 space-y-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200">
                             {route.attributes?.map((route,index)=>(
-                                (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/shop${route.href}`} key={index} >{route.label}</Link>)
+                                (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/shop/categories${route.href}`} key={index} >{route.label}</Link>)
                             ))}
                         </HoverCardContent>
                     </HoverCard>

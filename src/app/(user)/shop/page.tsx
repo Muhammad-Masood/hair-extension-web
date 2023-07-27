@@ -4,6 +4,13 @@ import ProductCard from '@/components/ui/productcard';
 import axios from 'axios';
 import Link from 'next/link';
 
+
+//   Route: api/products/category/${categoryId}   --> to get products of {categoryId}
+// Show only featured products of each top 3 categories => 3 products per row => total 9 products on whole page
+
+// Another Route to get all products of all categories
+// Route: /api/products
+
 interface Product {
   id: number;
   title: string;
@@ -72,6 +79,8 @@ interface ProductspageProps {
 //     img: "https://images.pexels.com/photos/13573917/pexels-photo-13573917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 //   }
 // ]
+
+
 
 const productspage: React.FC<ProductspageProps> = () => {
 
