@@ -1,10 +1,11 @@
 
 
-export default function ({props}:{props: {category:string}}){
+export default function ({ params: { category } }: { params: { category: string } }){
+    // const {category} = props
     return(
         <>
         <div>
-            {props.category}
+            {category}
         </div>
         </>
     )

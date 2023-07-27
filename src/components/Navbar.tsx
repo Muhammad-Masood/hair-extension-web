@@ -12,22 +12,31 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import axios from "axios";
-import { cn } from "@/lib/utils"
-import prismadb from "@/lib/prismadb";
-
-import React, { useEffect, useState } from 'react';
-
-// const fetchCategories = async () => {
-//   const cat = await axios.get('/api/categories');
-//   console.log(cat);
-// }
 
 const Navbar = async () => {
 
-const pathName = usePathname();
-// const categories = await axios.get('/api/categories');
-// console.log(categories);
+// const [run,setRun] = useState(false);
+// const pathName = usePathname();
+
+// const fetchCategories: any = async () => {
+//   try {
+//     const c = await axios.get('/api/categories');
+//     if (c) {
+//       console.log(c.data);
+//     };
+//     setRun(true);
+
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+
+// useEffect(()=>{
+//   if(!run){
+//   fetchCategories();
+//   }
+// },[]);
 
   return (
     <div className="w-full">
@@ -43,7 +52,7 @@ const pathName = usePathname();
 
                 <div className="lg:hidden flex space-x-4"> 
                 
-                <Link href="/" className="mt-1"><ShoppingCartIcon /></Link>
+                <Link href="/cart" className="mt-1"><ShoppingCartIcon /></Link>
                   <ThemeChanger />
 
                 <Disclosure.Button
@@ -96,9 +105,9 @@ const pathName = usePathname();
               <HoverCard openDelay={0} closeDelay={0} key={route.label} >
                         <HoverCardTrigger className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={route.href} >Shop</HoverCardTrigger>
                         <HoverCardContent className="flex w-auto flex-col px-4 py-3 space-y-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200">
-                            {/* {categories.map((category,index)=>(
-                                (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/products/${category.name}`} key={index} >{category.name.toUpperCase()}</Link>)
-                            ))} */}
+                            {route.attributes?.map((route,index)=>(
+                                (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/shop${route.href}`} key={index} >{route.label}</Link>)
+                            ))}
                         </HoverCardContent>
                     </HoverCard>
                      :            
@@ -112,7 +121,7 @@ const pathName = usePathname();
         </div>
 
         <div className="mr-3 space-x-4 lg:flex nav__item hidden">
-          <Link href="/" className="mt-2"><ShoppingCartIcon /></Link>
+          <Link href="/cart" className="mt-2"><ShoppingCartIcon /></Link>
           <Access />
           <ThemeChanger />
         </div>

@@ -1,9 +1,23 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import axios from "axios"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+// export const fetchCategories: any = async () => {
+//     try {
+//       const c = await axios.get('/api/categories');
+//       if (c) {
+//         console.log(c.data);
+//       };
+
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+
 
 export const routes = [
   {
@@ -15,11 +29,11 @@ export const routes = [
     label: 'Shop',
     attributes: [
       {
-        href: '/products',
-        label: 'Products',
+        href: '/accessories',
+        label: 'Accessories',
       },
       {
-        href: '/hairext',
+        href: '/hairextensions',
         label: 'Hair Extensions',
       },
     ]

@@ -8,6 +8,12 @@ module.exports = {
     './src/**/*.{ts,tsx}',
 	],
   theme: {
+    extend:{
+      colors:{
+        bronze50:'#cda632',
+        bronze100:'#c19a5b'
+      },
+    },
     container: {
       center: true,
       padding: "2rem",
