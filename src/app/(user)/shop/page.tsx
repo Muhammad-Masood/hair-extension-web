@@ -77,9 +77,6 @@ const productspage: React.FC<ProductspageProps> = () => {
 
 
   const [products, setProducts] = useState<Product[]>([])
-  console.log({products});
-
-
 
   const fetchData = async () => {
     const response = await axios.get('/api/products');
