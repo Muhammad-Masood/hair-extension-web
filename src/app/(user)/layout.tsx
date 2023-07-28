@@ -20,10 +20,11 @@ export default function UserLayout({
   // }
   return (
     <div className='lg:px-8'>
-      <Navbar />
-      {/* <Navbar/> */}
-      {children}
-      <Footer />
+
+        <Navbar />
+        {/* <Navbar/> */}
+        {children}
+        <Footer />
     </div>
   )
 }

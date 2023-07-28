@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "./container";
+import Link from "next/link";
 
 const Cta = () => {
   return (
@@ -14,13 +15,12 @@ const Cta = () => {
           </p>
         </div>
         <div className="flex-shrink-0 w-full text-center lg:w-auto">
-          <a
-            href=""
-            target="_blank"
+          <Link
+            href="/appointment"
             rel="noopener"
             className="inline-block py-3 mx-auto text-lg font-medium text-center text-indigo-600 bg-white rounded-md px-7 lg:px-10 lg:py-5 ">
             Book Now
-          </a>
+          </Link>
         </div>
       </div>
     </Container>

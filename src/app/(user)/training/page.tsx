@@ -70,8 +70,8 @@ const Training: React.FC = () => {
 
     return (
         <>
-            <div className="container mx-auto px-6 md:px-12 pb-12 text-black">
-                <h1 className="text-3xl font-bold mb-4 text-white py-10">Training Videos</h1>
+            <div className="container mx-auto px-6 md:px-12 pb-12 ">
+                <h1 className="text-3xl font-bold mb-4  py-10">Training Videos</h1>
                 <div className="flex justify-center my-4">
                     {pageNumbers.map((pageNumber) => (
                         <button

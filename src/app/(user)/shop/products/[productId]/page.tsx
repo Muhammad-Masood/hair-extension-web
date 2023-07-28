@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
-import ModalToBuy from '@/components/modals/ModalToBuy';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { useCart } from '../../../../../../context/CartContext';
 
 interface Product {
   id: number;
@@ -18,95 +18,78 @@ interface Product {
   methodId: string;
   createdAt: string;
   updatedAt: string;
+  img: string;
 }
 
-
-//   Route:  /api/products/${productId}
-//   Displays one product on whole page
-
-
-// const product = {
-//   id: 3,
-//   title: "Crystal Hair Remover",
-//   desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima consequuntur perferendis sapiente maxime, veniam ut incidunt nobis. Id perspiciatis, cumque sequi eius fugiat accusamus incidunt eligendi ad distinctio assumenda minima!",
-//   price: "123",
-//   isFeatured: true,
-//   categoryId: "5",
-//   colorId: "0",
-//   lengthId: "0",
-//   textureId: "0",
-//   methodId: "0",
-//   createdAt: "2023-07-20T11:38:18.060Z",
-//   updatedAt: "2023-07-20T11:38:18.060Z",
-//   img: "https://images.pexels.com/photos/9909784/pexels-photo-9909784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-
-// }
-
-const ProductPage = ({ params: { productId } }: { params: { productId: string } }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter()
-
-
-  const [product, setProduct] = useState({ img: "", title: "", desc: "", price: "" })
-
-  console.log({ product });
-
-
-  const handleBuyProduct = () => {
-    setIsModalOpen(true);
+interface ProductPageProps {
+  params: {
+    productId: string; // Change 'slug' to 'productId'
   };
+}
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
+  const router = useRouter();
+  const { cartItems, addToCart } = useCart();
+  const [product, setProduct] = React.useState<Product | null>(null);
 
+  console.log({ cartItems });
 
   async function fetchData() {
     try {
-      const res = await axios.get(`/api/products/${productId}`)
-
+      const res = await axios.get<Product>(`/api/products/${productId}`);
       console.log({ res });
 
       if (!res.data) {
-        setProduct({ img: "", title: "", desc: "", price: "" })
-        router.push('/shop/products')
-        return
+        setProduct(null);
+        router.push('/shop');
+        return;
       }
 
-      setProduct(res.data)
+      setProduct(res.data);
     } catch (error) {
       console.log(error);
     }
-    // return res.json()
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
-  !product?.title && <h2>Data Not Found</h2>
+    fetchData();
+  }, []);
+
+  if (!product) {
+    return <h2>Data Not Found</h2>;
+  }
+
+  function handleAddToCart() {
+    if (product) {
+      addToCart(product);
+    } else {
+      // Handle the case when product is not available, e.g., show an error message or do nothing.
+      console.log('Product not available.');
+    }
+  }
+
   return (
-    <section className="py-12 bg-black">
+    <section className="py-12">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <img
               width={350}
               className="h-auto rounded-lg shadow-lg"
-              src={product?.img} // Replace with the actual product image URL
-              alt={product?.title}
+              src={product.img}
+              alt={product.title}
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold mb-4">{product?.title}</h2>
-            <p>{product?.desc}</p>
-            <p className="font-bold mt-4">${product?.price}</p>
+            <h2 className="text-3xl font-bold mb-4">{product.title}</h2>
+            <p>{product.desc}</p>
+            <p className="font-bold mt-4">${product.price}</p>
             <button
-              className="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 rounded"
-              onClick={handleBuyProduct}
+              className="mt-4 bg-amber-500 hover:bg-amber-600  font-semibold py-2 px-4 rounded"
+              onClick={handleAddToCart}
             >
-              Buy Product
+              Add to Cart
             </button>
-            <ModalToBuy isOpen={isModalOpen} onClose={handleCloseModal} />
           </div>
         </div>
       </div>

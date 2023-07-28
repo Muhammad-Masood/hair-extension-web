@@ -18,46 +18,46 @@ const About = () => {
       <section className="mb-8 ">
         <h2 className="text-2xl font-bold mb-4 py-3">Our Team</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className="border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className="border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className=" border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className="border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className="border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className="border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
-          <div className="bg-[#1a1a1a] border hover:bg-[#1a1a07] cursor-pointer rounded-lg overflow-hidden shadow-md">
+          <div className="border cursor-pointer rounded-lg overflow-hidden shadow-md">
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2">John Doe</h3>
-              <p className="text-gray-600">Position</p>
+              <p className="">Position</p>
             </div>
           </div>
 

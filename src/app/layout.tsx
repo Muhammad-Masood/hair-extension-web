@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { ToasterProvider } from '../../providers/toast-provider'
 import SessionProvider from '../../providers/session-provider'
 import { ThemeProvider } from 'next-themes'
+import { CartProvider } from '../../context/CartContext'
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +12,7 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children, 
+  children,
 }: {
   children: React.ReactNode
 }) {
@@ -20,12 +21,14 @@ export default function RootLayout({
       {/* <body className="dark:bg-zinc-950"> */}
       <body>
         <ThemeProvider attribute='class'>
-        <SessionProvider>
-        <ToasterProvider/>
-        {children}
-        </SessionProvider>
+          <SessionProvider>
+            <ToasterProvider />
+            <CartProvider>
+              {children}
+            </CartProvider>
+          </SessionProvider>
         </ThemeProvider>
-        </body>
+      </body>
     </html>
   )
 }

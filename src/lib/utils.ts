@@ -45,6 +45,10 @@ export const routes = [
   {
     href: '/about',
     label: 'About'
+  },
+  {
+    href: '/appointment',
+    label: 'Appointment'
   }
 ]
 

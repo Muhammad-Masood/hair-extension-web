@@ -12,31 +12,38 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import { useCart } from "../../context/CartContext";
 
 const Navbar = async () => {
 
-// const [run,setRun] = useState(false);
-// const pathName = usePathname();
+  // const [run,setRun] = useState(false);
+  // const pathName = usePathname();
 
-// const fetchCategories: any = async () => {
-//   try {
-//     const c = await axios.get('/api/categories');
-//     if (c) {
-//       console.log(c.data);
-//     };
-//     setRun(true);
+  // const fetchCategories: any = async () => {
+  //   try {
+  //     const c = await axios.get('/api/categories');
+  //     if (c) {
+  //       console.log(c.data);
+  //     };
+  //     setRun(true);
 
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
 
-// useEffect(()=>{
-//   if(!run){
-//   fetchCategories();
-//   }
-// },[]);
+  // useEffect(()=>{
+  //   if(!run){
+  //   fetchCategories();
+  //   }
+  // },[]);
+
+
+  const { cartItems } = useCart();
+
+  // Calculate the total count of items in the cart
+  const cartItemCount = cartItems.reduce((acc, item) => acc + 1, 0);
 
   return (
     <div className="w-full">
@@ -50,34 +57,42 @@ const Navbar = async () => {
                   AmberLt
                 </Link>
 
-                <div className="lg:hidden flex space-x-4"> 
-                
-                <Link href="/cart" className="mt-1"><ShoppingCartIcon /></Link>
+                <div className="lg:hidden flex space-x-4">
+
+                  <Link href="/cart" className="relative">
+                    <ShoppingCartIcon />
+                    {cartItemCount > 0 && (
+                      <span className="absolute bottom-3 left-4 rounded-full bg-amber-600 text-white p-1" style={{ fontSize: "7px" }}>
+                        {cartItemCount}
+                      </span>
+                    )}
+                  </Link>
                   <ThemeChanger />
 
-                <Disclosure.Button
-                  aria-label="Toggle Menu"
-                  className="px-2 py-1 flex ml-auto space-x-4 text-gray-500 rounded-md hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-black">
-                  
-                  <svg
-                    className="w-6 h-6 fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24">
-                    {open && (
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                      />
-                    )}
-                    {!open && (
-                      <path
-                        fillRule="evenodd"
-                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                      />
-                    )}
-                  </svg>
-                </Disclosure.Button>
+
+                  <Disclosure.Button
+                    aria-label="Toggle Menu"
+                    className="px-2 py-1 flex ml-auto space-x-4 text-gray-500 rounded-md hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-black">
+
+                    <svg
+                      className="w-6 h-6 fill-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24">
+                      {open && (
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+                        />
+                      )}
+                      {!open && (
+                        <path
+                          fillRule="evenodd"
+                          d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                        />
+                      )}
+                    </svg>
+                  </Disclosure.Button>
 
                 </div>
                 <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
@@ -101,27 +116,34 @@ const Navbar = async () => {
         <div className="hidden text-center lg:flex lg:items-center">
           <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
             {routes.map((route) => (
-              route.label==='Shop'? 
-              <HoverCard openDelay={0} closeDelay={0} key={route.label} >
-                        <HoverCardTrigger className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={route.href} >Shop</HoverCardTrigger>
-                        <HoverCardContent className="flex w-auto flex-col px-4 py-3 space-y-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200">
-                            {route.attributes?.map((route,index)=>(
-                                (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/shop/categories${route.href}`} key={index} >{route.label}</Link>)
-                            ))}
-                        </HoverCardContent>
-                    </HoverCard>
-                     :            
-              <li className="mr-3 nav__item" key={route.href}>
-                <Link href={route.href} className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800">
-                  {route.label}
-                </Link>
-              </li>
+              route.label === 'Shop' ?
+                <HoverCard openDelay={0} closeDelay={0} key={route.label} >
+                  <HoverCardTrigger className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={route.href} >Shop</HoverCardTrigger>
+                  <HoverCardContent className="flex w-auto flex-col px-4 py-3 space-y-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200">
+                    {route.attributes?.map((route, index) => (
+                      (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/shop/categories${route.href}`} key={index} >{route.label}</Link>)
+                    ))}
+                  </HoverCardContent>
+                </HoverCard>
+                :
+                <li className="mr-3 nav__item" key={route.href}>
+                  <Link href={route.href} className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800">
+                    {route.label}
+                  </Link>
+                </li>
             ))}
           </ul>
         </div>
 
         <div className="mr-3 space-x-4 lg:flex nav__item hidden">
-          <Link href="/cart" className="mt-2"><ShoppingCartIcon /></Link>
+          <Link href="/cart" className="relative mt-2">
+            <ShoppingCartIcon />
+            {cartItemCount > 0 && (
+              <span className="absolute bottom-3 left-4 rounded-full bg-amber-600 text-white p-1" style={{ fontSize: "7px" }}>
+                {cartItemCount}
+              </span>
+            )}
+          </Link>
           <Access />
           <ThemeChanger />
         </div>
