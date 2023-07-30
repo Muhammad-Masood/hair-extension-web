@@ -1,9 +1,9 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { TextureColumn } from "./column"
+import { VideoColumn } from "./column"
 import { Button } from "@/components/ui/button";
-import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
+import { Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
 import {useRouter,usePathname} from "next/navigation";
 import {useState} from "react"
@@ -11,7 +11,7 @@ import axios from "axios";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps{
-    data: TextureColumn;
+    data: VideoColumn;
 }
 
 export const CellAction:React.FC<CellActionProps> = ({
@@ -26,9 +26,9 @@ export const CellAction:React.FC<CellActionProps> = ({
     const onDelete = async () => {
         try{
             setLoading(true);
-            await axios.delete(`/api/textures/${data.id}`,)
-            toast.success("Texture deleted");
-            router.push("/dashboard/textures");
+            await axios.delete(`/api/trainings/${data.id}`,)
+            toast.success("Video deleted");
+            router.push("/dashboard/trainings");
             router.refresh();
         } catch(error){
             toast.error("Something went wrong.");

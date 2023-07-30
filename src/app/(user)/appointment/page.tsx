@@ -4,7 +4,7 @@ import ModalToBuy from '@/components/modals/ModalToBuy';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
+import Image from 'next/image';
 
 interface Appointment {
     id: number;
@@ -98,7 +98,7 @@ const Page: React.FC = () => {
 
                         <div className="border p-4 py-5 mt-2 rounded-lg shadow">
                             <div className="flex justify-center">
-                                <img src="https://pbs.twimg.com/profile_images/1680659910860869632/0YdmM9FN_400x400.jpg" alt="Profile" className="w-16 h-16 rounded-full border-2 border-white mb-2" style={{ marginTop: "-50px" }} />
+                                <Image src="https://pbs.twimg.com/profile_images/1680659910860869632/0YdmM9FN_400x400.jpg" alt="Profile" width={16} height={16} className="rounded-full border-2 border-white mb-2 -mt-52" />
                             </div>
                             <h3 className="text-lg font-bold mb-2 text-center">Farooq Dad</h3>
                             <p className="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam.</p>

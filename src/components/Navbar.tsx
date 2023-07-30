@@ -15,34 +15,9 @@ import {
 import { useContext } from "react";
 import { contextVal } from "../../context/CartContext";
 
-const Navbar = async () => {
+const Navbar = () => {
 
   const { cartItems } = useContext(contextVal)
-  // const [run,setRun] = useState(false);
-  // const pathName = usePathname();
-
-  // const fetchCategories: any = async () => {
-  //   try {
-  //     const c = await axios.get('/api/categories');
-  //     if (c) {
-  //       console.log(c.data);
-  //     };
-  //     setRun(true);
-
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-
-  // useEffect(()=>{
-  //   if(!run){
-  //   fetchCategories();
-  //   }
-  // },[]);
-
-  // Calculate the total count of items in the cart
-  // const cartItemCount = cartItems.reduce((acc, item) => acc + 1, 0);
 
   return (
     <div className="w-full">

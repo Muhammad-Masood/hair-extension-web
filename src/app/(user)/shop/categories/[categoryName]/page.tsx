@@ -53,7 +53,7 @@ const CategoryPage = ({params}:CategoryProps) => {
     }
     fetchData();
 
-  }, []);
+  },[categoryName]);
 
   return (
     <section className="py-12 ">

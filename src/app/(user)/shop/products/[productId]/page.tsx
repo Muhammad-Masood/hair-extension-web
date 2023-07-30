@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { CartContext, contextVal } from '../../../../../../context/CartContext';
 import {useContext} from "react";
+// import { Product } from '../../../../../../context/CartContext';
+import Image from "next/image";
 
 interface Product {
   id: number;
@@ -35,6 +37,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
 
   console.log({ cartItems });
 
+  useEffect(() => {
+
   async function fetchData() {
     try {
       const res = await axios.get<Product>(`/api/products/${productId}`);
@@ -52,9 +56,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
     }
   }
 
-  useEffect(() => {
     fetchData();
-  }, []);
+
+  }, [productId,router]);
 
   if (!product) {
     return <h2>Data Not Found</h2>;
@@ -74,7 +78,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <img
+            <Image
               width={350}
               className="h-auto rounded-lg shadow-lg"
               src={product.img}

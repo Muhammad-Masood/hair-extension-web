@@ -6,7 +6,6 @@ interface ModalProps {
 }
 
 const ModalToBuy: React.FC<ModalProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
 
   const [formData, setFormData] = useState({
     email: '',
@@ -16,6 +15,8 @@ const ModalToBuy: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     nameOnCard: '',
     zip: '',
   });
+
+  if (!isOpen) return null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -6,6 +6,7 @@ import axios from 'axios';
 import YouTube from 'react-youtube'
 import prismadb from '@/lib/prismadb';
 // import { Training } from '@prisma/client';
+import Image from "next/image";
 
 interface VideoItem {
     id: string;
@@ -100,7 +101,8 @@ const Training: React.FC = () => {
 
                     {currentVideos.map((video) => (
                         <div key={video.id} className="border bg-[#1a1a1a] border-white rounded-lg overflow-hidden shadow-md cursor-pointer ">
-                            <img
+                            <Image
+                            height={40} width={40}
                                 src={video.thumbnailUrl}
                                 alt={video.title}
                                 className="w-full h-40 object-cover"
