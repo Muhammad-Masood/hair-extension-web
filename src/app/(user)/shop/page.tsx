@@ -45,12 +45,8 @@ const Shop = () => {
             imageUrl: item.images[0].url,
           }
         ));
-    console.log(formattedProducts);
         const shopProducts: ProductColumn[] = formattedProducts.filter((product) => product.isFeatured).slice(0, 9);
-        console.log(shopProducts);
-        
         setProducts(shopProducts);
-        console.log(products);
       }
       catch (error) {
         console.log("SHOP_PRODUCTS_FETCH", error);
@@ -76,40 +72,5 @@ const Shop = () => {
     </section>
   );
 };
-
-// export const getServerSideProps = async () => {
-
-//   const products = await prismadb.product.findMany(
-//     {
-//       include: {
-//         category: true,
-//         images: true,
-//       },
-//     },
-//   );
-
-// const formattedProducts: ProductColumn[] = products.map((item) => (
-// {
-//   id: item.id,
-//   title: item.title,
-//   desc: item.desc,
-//   isFeatured: item.isFeatured,
-//   price: formatter.format(item.price.toNumber()),
-//   category: item.category.name,
-//   imageUrl: item.images[0].url,
-//   createdAt: format(item.createdAt, 'MMMM do, yyyy'),
-// }
-// ));
-
-// const shopProducts: ProductColumn[] = formattedProducts.filter((product) => product.isFeatured).slice(0, 9);
-// console.log(shopProducts);
-// return {
-//   props:{
-//     products: formattedProducts,
-//   },
-// }
-// }
-
-
 
 export default Shop;

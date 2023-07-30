@@ -24,4 +24,14 @@ export async function POST(
     }
 };
 
-
+export async function GET(
+    req: Request
+){
+    try{
+        const videos = await prismadb.training.findMany();
+        return NextResponse.json(videos);
+    } catch(error){
+        console.log('[VIDEOS_GET]',error);
+        return new NextResponse("Internal error", {status: 500});
+    }
+};
