@@ -64,6 +64,14 @@ export async function GET (req:Request,
 
         try{
             const product = await prismadb.product.findUnique({
+                include:{
+                    category:true,
+                    images:true,
+                    color:true,
+                    length:true,
+                    texture:true,
+                    method:true
+                },
                 where:{
                     id: +(params.productId),
                 },

@@ -98,7 +98,7 @@ const Page: React.FC = () => {
 
                         <div className="border p-4 py-5 mt-2 rounded-lg shadow">
                             <div className="flex justify-center">
-                                <Image src="https://pbs.twimg.com/profile_images/1680659910860869632/0YdmM9FN_400x400.jpg" alt="Profile" width={16} height={16} className="rounded-full border-2 border-white mb-2 -mt-52" />
+                                {/* <Image src="#" alt="Profile" width={16} height={16} className="rounded-full border-2 border-white mb-2 -mt-52" /> */}
                             </div>
                             <h3 className="text-lg font-bold mb-2 text-center">Farooq Dad</h3>
                             <p className="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam.</p>

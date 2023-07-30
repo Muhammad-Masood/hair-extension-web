@@ -7,6 +7,7 @@ import { routes } from "@/lib/utils";
 import { Access } from "@/app/auth";
 import { ShoppingCartIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { CrownIcon } from "lucide-react";
 import {
   HoverCard,
   HoverCardContent,
@@ -28,18 +29,26 @@ const Navbar = () => {
             <>
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
                 <Link href="/" className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                  AmberLt
+                  <div className="">
+                    <div className="flex gap-2">
+                    <p className="border border-bronze-150 w-[103px] h-0 mt-5"></p>
+                    <CrownIcon />
+                    <p className="border border-bronze-150 w-[103px] h-0 mt-5"></p>
+                    </div>
+                  <p className="ml-11 -mb-2 ">AMBER HAIR</p>
+                  <p className="text-[9px] tracking-widest">EMBRACE YOUR INNER BEAUTY WITH AMBER HAIR</p>
+                  </div>
                 </Link>
 
                 <div className="lg:hidden flex space-x-4">
 
-                  <Link href="/cart" className="mt-1">
+                  <Link href="/cart" className="mt-1 mr-1">
                     <ShoppingCartIcon />
-                    <span className="absolute top-6 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
+                    <span className="absolute top-10 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
                       {cartItems}
                     </span>
                   </Link>
-                  <ThemeChanger />
+                  <ThemeChanger/>
 
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -73,7 +82,7 @@ const Navbar = () => {
                         {route.label}
                       </Link>
                     ))}
-                    <div className="w-full">
+                    <div className="w-full mt-4">
                       <Access />
                     </div>
                   </>
@@ -109,10 +118,10 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="mr-3 mt-3 space-x-5 lg:flex nav__item hidden">
-          <Link href="/cart" className="">
+        <div className="mr-3 mt-1 space-x-5 lg:flex nav__item hidden">
+          <Link href="/cart" className="pt-1">
             <ShoppingCartIcon />
-            <span className="absolute top-6 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
+            <span className="absolute top-11 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
               {cartItems}
             </span>
             {/* {cartItemCount > 0 && (

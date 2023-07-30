@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { CartContext, contextVal } from '../../../../../../context/CartContext';
+import { CartContext, contextProduct, contextVal } from '../../../../../../context/CartContext';
 import {useContext} from "react";
 // import { Product } from '../../../../../../context/CartContext';
 import Image from "next/image";
+import { ProductColumn } from '@/app/(admin)/dashboard/products/components/column';
 
 interface Product {
   id: number;
@@ -30,47 +31,48 @@ interface ProductPageProps {
   };
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
-  const router = useRouter();
-  const { cartItems } = useContext(contextVal);
-  const [product, setProduct] = React.useState<Product | null>(null);
+const ProductPage: React.FC<ProductPageProps> = ( {params} : ProductPageProps) => {
 
-  console.log({ cartItems });
+  const {productId} = params;
+  const {cartProducts,setCartProducts} = useContext(contextProduct);
+  const { cartItems,setCartItems } = useContext(contextVal);
+  const [quantity,setQuantity] = useState(1);
+  const [product, setProduct] = React.useState<ProductColumn | null>(null);
 
   useEffect(() => {
-
-  async function fetchData() {
-    try {
-      const res = await axios.get<Product>(`/api/products/${productId}`);
-      console.log({ res });
-
-      if (!res.data) {
-        setProduct(null);
-        router.push('/shop');
-        return;
+    async function fetchData() {
+      try {
+        const res = await axios.get(`/api/products/${productId}`);
+        if(res){
+        setProduct(res.data);
+        }
+      } catch (error) {
+        console.log(error);
       }
-
-      setProduct(res.data);
-    } catch (error) {
-      console.log(error);
     }
-  }
+      fetchData();
+    }, [productId]);
 
-    fetchData();
-
-  }, [productId,router]);
+    const addToCart = () => {
+      if(product){
+      const p = {
+        id: product.id,
+        name: product.title,
+        quantity: quantity,
+        subTotal: product.price,
+        image: product.imageUrl,
+        price: product.price,
+        category: product.category
+      }
+      setCartItems(cartItems + quantity);
+      setCartProducts([...cartProducts, p]);
+      console.log("cartItems", cartProducts);
+    }
+    }
+ 
 
   if (!product) {
     return <h2>Data Not Found</h2>;
-  }
-
-  function handleAddToCart() {
-    if (product) {
-      // addToCart(product);
-    } else {
-      // Handle the case when product is not available, e.g., show an error message or do nothing.
-      console.log('Product not available.');
-    }
   }
 
   return (
@@ -81,7 +83,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
             <Image
               width={350}
               className="h-auto rounded-lg shadow-lg"
-              src={product.img}
+              src={product.imageUrl}
               alt={product.title}
             />
           </div>
@@ -91,7 +93,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
             <p className="font-bold mt-4">${product.price}</p>
             <button
               className="mt-4 bg-amber-500 hover:bg-amber-600  font-semibold py-2 px-4 rounded"
-              onClick={handleAddToCart}
+              onClick={addToCart}
             >
               Add to Cart
             </button>
