@@ -12,7 +12,7 @@ const ThemeChanger = () => {
   if (!mounted) return null;
 
   return (
-    <div className="flex items-center">
+    <div className="mt-1 lg:mt-0">
       {theme === "dark" ? (
         <button
           onClick={() =>  {console.log('light');
@@ -22,7 +22,7 @@ const ThemeChanger = () => {
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5"
+            className="w-6 h-6"
             viewBox="0 0 20 20"
             fill="currentColor">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -37,8 +37,8 @@ const ThemeChanger = () => {
           <span className="sr-only">Dark Mode</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="26"
+            height="26"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

@@ -23,6 +23,7 @@ model User {
   password String
   phone Int?
   address String?
+  isSubscriber Boolean?
   role UserRole @default(USER)
   order Order[]
 }
@@ -93,6 +94,14 @@ model Appointment{
   price Decimal
   duration Decimal
   order Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Training {
+  id Int @unique @default(autoincrement())
+  url String
+  price Decimal
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

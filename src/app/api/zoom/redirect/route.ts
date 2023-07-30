@@ -1,7 +1,7 @@
 import axios from 'axios';
 import querystring from 'querystring';
 
-export default async function handler(req, res) {
+export default async function handler(req:any, res:any) {
     if (req.method === 'GET') {
         res.status(200).json({ message: 'Success' });
     } else {

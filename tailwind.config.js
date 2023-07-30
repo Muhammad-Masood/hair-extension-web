@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+
+  mode:'jit',
+
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -8,12 +11,15 @@ module.exports = {
     './src/**/*.{ts,tsx}',
 	],
   theme: {
-    extend:{
-      colors:{
-        bronze50:'#cda632',
-        bronze100:'#c19a5b'
-      },
-    },
+    // extend:{
+    //   colors:{
+    //     bronze:{
+    //       50: "#cda632",
+    //       100: "#c19a5b",
+    //     },
+    //   },
+    // },
+    
     container: {
       center: true,
       padding: "2rem",
@@ -23,6 +29,12 @@ module.exports = {
     },
     extend: {
       colors: {
+        bronze:{
+          50: "#cda632",
+          100: "#c19a5b",
+          150: "#AD974F",
+          200: "#8E793E",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

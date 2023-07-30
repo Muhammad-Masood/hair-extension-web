@@ -12,10 +12,12 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-import { useCart } from "../../context/CartContext";
+import { useContext } from "react";
+import { contextVal } from "../../context/CartContext";
 
 const Navbar = async () => {
 
+  const { cartItems } = useContext(contextVal)
   // const [run,setRun] = useState(false);
   // const pathName = usePathname();
 
@@ -39,11 +41,8 @@ const Navbar = async () => {
   //   }
   // },[]);
 
-
-  const { cartItems } = useCart();
-
   // Calculate the total count of items in the cart
-  const cartItemCount = cartItems.reduce((acc, item) => acc + 1, 0);
+  // const cartItemCount = cartItems.reduce((acc, item) => acc + 1, 0);
 
   return (
     <div className="w-full">
@@ -59,16 +58,13 @@ const Navbar = async () => {
 
                 <div className="lg:hidden flex space-x-4">
 
-                  <Link href="/cart" className="relative">
+                  <Link href="/cart" className="mt-1">
                     <ShoppingCartIcon />
-                    {cartItemCount > 0 && (
-                      <span className="absolute bottom-3 left-4 rounded-full bg-amber-600 text-white p-1" style={{ fontSize: "7px" }}>
-                        {cartItemCount}
-                      </span>
-                    )}
+                    <span className="absolute top-6 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
+                      {cartItems}
+                    </span>
                   </Link>
                   <ThemeChanger />
-
 
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -98,11 +94,11 @@ const Navbar = async () => {
                 <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
                   <>
                     {routes.map((route) => (
-                      <Link key={route.href} href={route.href} className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none">
+                      <Link key={route.href} href={route.href} className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
                         {route.label}
                       </Link>
                     ))}
-                    <div className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5">
+                    <div className="w-full">
                       <Access />
                     </div>
                   </>
@@ -118,31 +114,37 @@ const Navbar = async () => {
             {routes.map((route) => (
               route.label === 'Shop' ?
                 <HoverCard openDelay={0} closeDelay={0} key={route.label} >
-                  <HoverCardTrigger className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={route.href} >Shop</HoverCardTrigger>
+                  <HoverCardTrigger className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 light:hover:text-indigo-500  focus:outline-none" href={route.href} >Shop</HoverCardTrigger>
                   <HoverCardContent className="flex w-auto flex-col px-4 py-3 space-y-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200">
                     {route.attributes?.map((route, index) => (
-                      (<Link className=" hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800" href={`/shop/categories${route.href}`} key={index} >{route.label}</Link>)
+                      (<Link className=" focus:outline-none group transition duration-300" href={`/shop/categories${route.href}`} key={index} >{route.label}
+                        <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 dark:bg-bronze-50"></span>
+                      </Link>)
                     ))}
                   </HoverCardContent>
                 </HoverCard>
                 :
-                <li className="mr-3 nav__item" key={route.href}>
-                  <Link href={route.href} className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800">
+                <li className="mr-3 nav__item group transition duration-300" key={route.href}>
+                  <Link href={route.href} className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:outline-none hover:scale-125 transition duration-300">
                     {route.label}
                   </Link>
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 dark:bg-bronze-50"></span>
                 </li>
             ))}
           </ul>
         </div>
 
-        <div className="mr-3 space-x-4 lg:flex nav__item hidden">
-          <Link href="/cart" className="relative mt-2">
+        <div className="mr-3 mt-3 space-x-5 lg:flex nav__item hidden">
+          <Link href="/cart" className="">
             <ShoppingCartIcon />
-            {cartItemCount > 0 && (
+            <span className="absolute top-6 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
+              {cartItems}
+            </span>
+            {/* {cartItemCount > 0 && (
               <span className="absolute bottom-3 left-4 rounded-full bg-amber-600 text-white p-1" style={{ fontSize: "7px" }}>
                 {cartItemCount}
               </span>
-            )}
+            )} */}
           </Link>
           <Access />
           <ThemeChanger />

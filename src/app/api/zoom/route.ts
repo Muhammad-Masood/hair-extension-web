@@ -1,7 +1,7 @@
 import axios from 'axios';
 import querystring from 'querystring';
 
-export default async function handler(req, res) {
+export default async function handler(req:any, res:any) {
     if (req.method === 'GET') {
         const { code, state } = req.query;
 
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
             res.status(200).json({ access_token });
         } catch (error) {
-            console.error('Error exchanging authorization code for access token:', error.message);
+            console.error('Error exchanging authorization code for access token:', error);
             res.status(500).json({ error: 'Failed to retrieve access token' });
         }
     } else {

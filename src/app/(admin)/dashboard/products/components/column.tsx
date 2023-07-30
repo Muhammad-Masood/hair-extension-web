@@ -13,6 +13,7 @@ export type ProductColumn = {
     price:string
     createdAt:string
     category: string
+    isFeatured: boolean
     length?: number
     texture?: string
     method?: string

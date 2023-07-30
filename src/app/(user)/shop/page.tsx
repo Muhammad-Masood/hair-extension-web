@@ -3,7 +3,12 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from '@/components/ui/productcard';
 import axios from 'axios';
 import Link from 'next/link';
-
+import { ProductColumn } from '@/app/(admin)/dashboard/products/components/column';
+import prismadb from '@/lib/prismadb';
+import { formatter } from '@/lib/utils';
+import { format } from 'date-fns';
+// import Image from "next/image";
+import { Category, Image } from '@prisma/client';
 
 //   Route: api/products/category/${categoryId}   --> to get products of {categoryId}
 // Show only featured products of each top 3 categories => 3 products per row => total 9 products on whole page
@@ -11,179 +16,100 @@ import Link from 'next/link';
 // Another Route to get all products of all categories
 // Route: /api/products
 
-interface Product {
-  id: number;
-  title: string;
-  desc: string;
-  price: string;
-  isFeatured: boolean;
-  categoryId: string;
-  colorId: string;
-  lengthId: string;
-  textureId: string;
-  methodId: string;
-  createdAt: string;
-  updatedAt: string;
-  img: string
+interface Products {
+  id:number
+  title:string
+  desc:string
+  isFeatured:boolean
+  price:string
+  category:Category
+  images:Image[]
+  createdAt:Date
 }
 
-interface ProductspageProps {
-  products: Product[];
-}
+const Shop = () => {
 
-
-// const products: Product[] = [
-//   {
-//     id: 1,
-//     title: "Crystal Hair Remover",
-//     desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima consequuntur perferendis sapiente maxime, veniam ut incidunt nobis. Id perspiciatis, cumque sequi eius fugiat accusamus incidunt eligendi ad distinctio assumenda minima!",
-//     price: "23",
-//     isFeatured: true,
-//     categoryId: "5",
-//     colorId: "0",
-//     lengthId: "0",
-//     textureId: "0",
-//     methodId: "0",
-//     createdAt: "2023-07-20T11:38:18.060Z",
-//     updatedAt: "2023-07-20T11:38:18.060Z",
-//     img: "https://images.pexels.com/photos/9909784/pexels-photo-9909784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-//   },
-//   {
-//     id: 2,
-//     title: "Crystal Hair Remover",
-//     desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima consequuntur perferendis sapiente maxime, veniam ut incidunt nobis. Id perspiciatis, cumque sequi eius fugiat accusamus incidunt eligendi ad distinctio assumenda minima!",
-//     price: "213213",
-//     isFeatured: true,
-//     categoryId: "5",
-//     colorId: "0",
-//     lengthId: "0",
-//     textureId: "0",
-//     methodId: "0",
-//     createdAt: "2023-07-20T11:38:18.060Z",
-//     updatedAt: "2023-07-20T11:38:18.060Z",
-//     img: "https://images.pexels.com/photos/10427811/pexels-photo-10427811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-//   },
-//   {
-//     id: 3,
-//     title: "Crystal Hair Remover",
-//     desc: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima consequuntur perferendis sapiente maxime, veniam ut incidunt nobis. Id perspiciatis, cumque sequi eius fugiat accusamus incidunt eligendi ad distinctio assumenda minima!",
-//     price: "23",
-//     isFeatured: true,
-//     categoryId: "5",
-//     colorId: "0",
-//     lengthId: "0",
-//     textureId: "0",
-//     methodId: "0",
-//     createdAt: "2023-07-20T11:38:18.060Z",
-//     updatedAt: "2023-07-20T11:38:18.060Z",
-//     img: "https://images.pexels.com/photos/13573917/pexels-photo-13573917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-//   }
-// ]
-
-
-const productspage: React.FC<ProductspageProps> = () => {
-
-
-  const [products, setProducts] = useState<Product[]>([])
-
-  const fetchData = async () => {
-    const response = await axios.get('/api/products');
-    const prods: Product[] = response.data;
-
-    setProducts(prods)
-    console.log(response.data);
-  }
-
+  const [products, setProducts] = useState<any[]>([]);
   useEffect(() => {
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/api/products');
+        const formattedProducts: ProductColumn[] = res.data.map((item:Products) => (
+          {
+            id: item.id,
+            title: item.title,
+            desc: item.desc,
+            isFeatured: item.isFeatured,
+            price: formatter.format(parseFloat(item.price)),
+            category: item.category.name,
+            imageUrl: item.images[0].url,
+          }
+        ));
+    console.log(formattedProducts);
+        const shopProducts: ProductColumn[] = formattedProducts.filter((product) => product.isFeatured).slice(0, 9);
+        console.log(shopProducts);
+        
+        setProducts(shopProducts);
+        console.log(products);
+      }
+      catch (error) {
+        console.log("SHOP_PRODUCTS_FETCH", error);
+      }
 
+    }
+    fetchData();
+
+  }, []);
 
   return (
     <section className="py-12 ">
       <div className="container mx-auto px-6 md:px-12">
         <h2 className="text-3xl font-bold mb-8">Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {products?.map((product: Product) => {
-            return product.isFeatured && (
-              <div
-                key={product.categoryId}
-                className="max-w-sm bg-transparent text-black dark:text-white border-gray-700 border rounded-lg shadow"
-              >
-                <a href="#">
-                  <img
-                    className="w-full h-64 object-cover rounded-t-lg"
-                    src="https://images.pexels.com/photos/10427811/pexels-photo-10427811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    alt=""
-                  />
-                </a>
-                <div className="p-5">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight">
-                      {product.title}
-                    </h5>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Category:{" "}
-                    <Link href={`/shop/categories/${product.categoryId}`}>
-                      {product.categoryId}
-                    </Link>
-                  </p>
-                  <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    {product.desc}
-                  </p>
-
-                  <Link href={`/shop/products/${product?.id}`}>
-                    <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-600 hover:bg-amber-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-                      Read more
-                      <svg
-                        className="w-3.5 h-3.5 ml-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
-                    </button>
-                  </Link>
-                </div>
-              </div>
-
-            )
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+          {products.map((p: ProductColumn) => (
+            <div key={p.id}>
+              <ProductCard product={p} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-// export async function getServerSideProps() {
-//   try {
-//     // Fetch data from the API
-//     const response = await axios.get('/api/products');
-//     const products: Product[] = response.data;
+// export const getServerSideProps = async () => {
 
-//     console.log(response.data);
-
-
-//     return {
-//       props: {
-//         products,
+//   const products = await prismadb.product.findMany(
+//     {
+//       include: {
+//         category: true,
+//         images: true,
 //       },
-//     };
-//   } catch (error) {
-//     console.error('Error fetching data:', error.message);
-//     return {
-//       props: {
-//         products: [],
-//       },
-//     };
-//   }
+//     },
+//   );
+
+// const formattedProducts: ProductColumn[] = products.map((item) => (
+// {
+//   id: item.id,
+//   title: item.title,
+//   desc: item.desc,
+//   isFeatured: item.isFeatured,
+//   price: formatter.format(item.price.toNumber()),
+//   category: item.category.name,
+//   imageUrl: item.images[0].url,
+//   createdAt: format(item.createdAt, 'MMMM do, yyyy'),
+// }
+// ));
+
+// const shopProducts: ProductColumn[] = formattedProducts.filter((product) => product.isFeatured).slice(0, 9);
+// console.log(shopProducts);
+// return {
+//   props:{
+//     products: formattedProducts,
+//   },
+// }
 // }
 
-export default productspage;
+
+
+export default Shop;

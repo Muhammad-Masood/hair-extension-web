@@ -2,8 +2,8 @@ import prismadb from "@/lib/prismadb";
 import { TextureForm } from "../components/texture-form"
 
 
-const CategoryPage = async ({params}:{params:{textureId:string}}) => {
-    const texture = await prismadb.category.findUnique({
+const TexturePage = async ({params}:{params:{textureId:string}}) => {
+    const texture = await prismadb.texture.findUnique({
         where:{
             id:params.textureId
         }
@@ -17,4 +17,4 @@ const CategoryPage = async ({params}:{params:{textureId:string}}) => {
     );
 }
 
-export default CategoryPage;
+export default TexturePage;

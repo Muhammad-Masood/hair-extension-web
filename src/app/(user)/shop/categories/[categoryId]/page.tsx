@@ -21,12 +21,12 @@ interface Product {
 
 interface CategoryProps {
   params: {
-    categoryId: string;
+    categoryName: string;
   };
 }
 
 const Category = ({ params }: CategoryProps) => {
-  const { categoryId } = params;
+  const { categoryName } = params;
 
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -35,7 +35,7 @@ const Category = ({ params }: CategoryProps) => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/products/category/${categoryId}`);
+      const response = await axios.get(`/api/products/category/${categoryName}`);
       const prods: Product[] = response.data;
       setProducts(prods);
     } catch (error) {
@@ -50,7 +50,7 @@ const Category = ({ params }: CategoryProps) => {
   return (
     <section className="py-12 ">
       <div className="container mx-auto px-6 md:px-12">
-        <h2 className="text-3xl font-bold mb-8">Products For {categoryId}</h2>
+        <h2 className="text-3xl font-bold mb-8">Products For {categoryName}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {products?.map((product: Product) => {
             return  (

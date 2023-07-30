@@ -1,36 +1,59 @@
 import Image from "next/image";
 import Container from "./container";
-import h1 from '../../public/img/h1.png'
+import heroo from '../../public/img/heroo.png'
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
     <>
       <Container className="flex flex-wrap">
         <div className="flex items-center w-full lg:w-1/2">
-          <div className="max-w-2xl mb-8">
+          <div className="max-w-2xl mb-8 space-y-8">
+            <div>
             <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
               Amber Lt Heading
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor consequatur, illo dicta sed quod doloribus labore iure enim ullam ipsam culpa sit, fugit, rem ducimus animi explicabo quibusdam. Iste, veniam.
             </p>
-
+            </div>
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
               <Button variant={"outline"}
-                className="px-8 py-4 text-lg font-medium text-center  rounded-md hover:bg-bronze50">
+                className="px-8 py-6 text-lg font-medium text-center rounded-md dark:hover:bg-bronze-50">
                 Shop Now
               </Button>
+            </div>
+            <div className="font-sans mt-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Link href="#" className="text-white dark:hover:text-bronze-150 hover:text-indigo-500 duration-300 ">
+                  <p className="text-lg font-medium">Keratin system</p>
+                  <p className="font-light">The most popular fixing system</p>
+                </Link>
+                <Link href="#" className="text-white dark:hover:text-bronze-150 hover:text-indigo-500 duration-300">
+                  <p className="text-lg font-medium">Tape system</p>
+                  <p className="font-light">The easiest extension type</p>
+                </Link>
+                <Link href="#" className="text-white dark:hover:text-bronze-150 hover:text-indigo-500 duration-300">
+                  <p className="text-lg font-medium">Weft system</p>
+                  <p className="font-light">The safest sew-in technique</p>
+                </Link>
+                <Link href="#" className="text-white dark:hover:text-bronze-150 hover:text-indigo-500 duration-300">
+                  <p className="text-lg font-medium">Hair bundles</p>
+                  <p className="font-light">A multi-purpose product</p>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
         <div className="flex items-center justify-center w-full lg:w-1/2">
           <div className="">
             <Image
-              src={h1}
-              width="616"
-              height="616"
-              className={"object-cover rounded-full"}
+              src={heroo}
+              //  width={700}
+              // width="616"
+              // height="617"
+              className={"object-cover rounded-full mb-4"}
               alt="Hero Illustration"
               loading="eager"
               placeholder="blur"

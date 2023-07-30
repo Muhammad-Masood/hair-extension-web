@@ -1,12 +1,20 @@
 import prismadb from "@/lib/prismadb";
 
 export async function GET (req:Request,
-    {params} : {params:{categoryId:string}}){
+    {params} : {params:{categoryName:string}}){
 
         try{
+            const category = await prismadb.category.findFirst({
+                where:{
+                    name:params.categoryName,
+                }
+            });
+
+            if(!category) return null
+
             const products = await prismadb.product.findMany({
                 where:{
-                    categoryId:params.categoryId
+                    categoryId:category.id,
                 },
             });
 

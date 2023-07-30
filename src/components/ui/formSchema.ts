@@ -32,10 +32,8 @@ export const textureForm = z.object({
 });
 
 export const videoForm = z.object({
-  title:z.string().min(5),
-  desc:z.string().min(5),
-  // z.object({url:z.string()})
-  video:z.null()
+  url:z.string().min(5),
+  price:z.coerce.number().min(1),
 });
 
 export const productForm = z.object({

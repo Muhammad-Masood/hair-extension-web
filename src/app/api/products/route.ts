@@ -53,7 +53,12 @@ export async function GET(
     req: Request
 ){
     try{
-        const products = await prismadb.product.findMany();
+        const products = await prismadb.product.findMany({
+            include:{
+                category:true,
+                images:true
+            }
+        });
         return NextResponse.json(products);
     } catch(error){
         console.log('[PRODUCTS_GET]',error);

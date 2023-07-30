@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 import YouTube from 'react-youtube'
+import prismadb from '@/lib/prismadb';
+// import { Training } from '@prisma/client';
 
 interface VideoItem {
     id: string;
@@ -14,6 +16,16 @@ interface VideoItem {
 const Training: React.FC = () => {
     const [videos, setVideos] = useState<VideoItem[]>([]);
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+    // useEffect(() => {
+    //     const fetchVideosData = async () => {
+    //         const videoInfo: Training[] = await prismadb.training.findMany();
+    //         console.log(videoInfo);
+    //     }
+    //     fetchVideosData();
+    // }, []);
+
+
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);

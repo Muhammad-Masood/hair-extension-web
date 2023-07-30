@@ -3,7 +3,8 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useCart } from '../../../../../../context/CartContext';
+import { CartContext, contextVal } from '../../../../../../context/CartContext';
+import {useContext} from "react";
 
 interface Product {
   id: number;
@@ -29,7 +30,7 @@ interface ProductPageProps {
 
 const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
   const router = useRouter();
-  const { cartItems, addToCart } = useCart();
+  const { cartItems } = useContext(contextVal);
   const [product, setProduct] = React.useState<Product | null>(null);
 
   console.log({ cartItems });
@@ -61,7 +62,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params: { productId } }) => {
 
   function handleAddToCart() {
     if (product) {
-      addToCart(product);
+      // addToCart(product);
     } else {
       // Handle the case when product is not available, e.g., show an error message or do nothing.
       console.log('Product not available.');
