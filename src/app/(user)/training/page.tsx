@@ -7,8 +7,8 @@ import YouTube from 'react-youtube'
 import prismadb from '@/lib/prismadb';
 import { Button } from '@/components/ui/button';
 import ModalToBuy from '@/components/modals/ModalToBuy';
-import Image from "next/image";
 // import { Training } from '@prisma/client';
+import Image from "next/image"
 
 interface VideoItem {
     id: string;
@@ -143,9 +143,10 @@ const Training: React.FC = () => {
                             {currentVideos.map((video) => (
                                 <div key={video.id} className="border  border-amber-900 rounded-lg overflow-hidden shadow-md cursor-pointer ">
                                     <Image
+                                        width={40}
+                                        height={40}
                                         src={video.thumbnailUrl}
                                         alt={video.title}
-                                        height={40}
                                         className="w-full object-cover"
                                         onClick={() => handleVideoClick(video.id)}
                                     />
@@ -211,8 +212,6 @@ const Training: React.FC = () => {
                                         </div>
                                         <h3 className="text-lg font-bold mb-2 text-center">Farooq Dad</h3>
                                         <p className="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam.</p>
-
-
                                     </div>
 
                                     <div className="border py-4 mt-2 rounded-lg shadow">
