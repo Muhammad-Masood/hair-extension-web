@@ -18,7 +18,7 @@ interface VideoItem {
 }
 
 
-function extractYouTubeVideoID(url:string) {
+function extractYouTubeVideoID(url: string) {
     // Regular expression to match the YouTube video ID
     const regex = /(?:youtu\.be\/|youtube\.com\/(?:watch\?.*v=|embed\/|v\/))([\w-]{11})/;
 
@@ -208,7 +208,7 @@ const Training: React.FC = () => {
 
                                     <div className="border p-4 py-5 mt-2 rounded-lg shadow">
                                         <div className="flex justify-center">
-                                            <Image src="" alt="Profile" width={16} height={16} className="rounded-full border-2 border-white mb-2" style={{ marginTop: "-50px" }} />
+                                            <img src="https://pbs.twimg.com/profile_images/1680659910860869632/0YdmM9FN_400x400.jpg" alt="Profile" className="w-16 h-16 rounded-full border-2 border-white mb-2" style={{ marginTop: "-50px" }} />
                                         </div>
                                         <h3 className="text-lg font-bold mb-2 text-center">Farooq Dad</h3>
                                         <p className="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam.</p>

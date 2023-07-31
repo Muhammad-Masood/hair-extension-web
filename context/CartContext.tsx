@@ -1,24 +1,8 @@
 "use client"
 
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { Product } from './types';
 
-export interface Product {
-    id: number;
-    title: string;
-    desc: string;
-    price: string;
-    isFeatured: boolean;
-    categoryId: string;
-    colorId: string;
-    lengthId: string;
-    textureId: string;
-    methodId: string;
-    createdAt: string;
-    updatedAt: string;
-    image: string;
-    quantity: number;
-    subTotal: number;
-}
 
 export const contextVal = createContext<any>(null);
 export const contextProduct = createContext<any>({});

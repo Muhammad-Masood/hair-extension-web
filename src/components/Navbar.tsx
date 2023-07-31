@@ -15,10 +15,14 @@ import {
 } from "@/components/ui/hover-card"
 import { useContext } from "react";
 import { contextVal } from "../../context/CartContext";
+import { useCartContext } from "../../context/ContextForCart";
 
 const Navbar = () => {
 
-  const { cartItems } = useContext(contextVal)
+  const { cartItems } = useCartContext()
+
+  const cartItemCount = cartItems.reduce((acc, item) => acc + 1, 0);
+
 
   return (
     <div className="w-full">
@@ -45,7 +49,7 @@ const Navbar = () => {
                   <Link href="/cart" className="mt-1 mr-1">
                     <ShoppingCartIcon />
                     <span className="absolute top-10 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
-                      {cartItems}
+                      {cartItemCount}
                     </span>
                   </Link>
                   <ThemeChanger/>
@@ -122,7 +126,7 @@ const Navbar = () => {
           <Link href="/cart" className="pt-1">
             <ShoppingCartIcon />
             <span className="absolute top-11 ml-4 h-6 w-6 text-center rounded-full bg-bronze-200 text-white">
-              {cartItems}
+              {cartItemCount}
             </span>
             {/* {cartItemCount > 0 && (
               <span className="absolute bottom-3 left-4 rounded-full bg-amber-600 text-white p-1" style={{ fontSize: "7px" }}>
