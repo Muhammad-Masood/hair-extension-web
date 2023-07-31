@@ -1,7 +1,6 @@
 "use client"
 
 import { useContext } from "react";
-import { contextProduct, contextVal } from "../../context/CartContext";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";

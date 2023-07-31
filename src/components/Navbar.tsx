@@ -14,7 +14,6 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 import { useContext } from "react";
-import { contextVal } from "../../context/CartContext";
 import { useCartContext } from "../../context/ContextForCart";
 
 const Navbar = () => {

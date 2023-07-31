@@ -4,9 +4,7 @@ import { Inter } from 'next/font/google'
 import { ToasterProvider } from '../../providers/toast-provider'
 import SessionProvider from '../../providers/session-provider'
 import { ThemeProvider } from 'next-themes'
-import { CartContext } from '../../context/CartContext'
 import { CartContextProvider } from '../../context/ContextForCart'
-// import { CartProvider } from '../../context/CartContext'
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -25,13 +23,11 @@ export default function RootLayout({
         <ThemeProvider attribute='class'>
           <SessionProvider>
             <ToasterProvider />
-            <CartContext>
 
               <CartContextProvider>
                 {children}
               </CartContextProvider>
-              
-            </CartContext>
+
           </SessionProvider>
         </ThemeProvider>
       </body>

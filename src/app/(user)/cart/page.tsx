@@ -2,9 +2,7 @@
 
 "use client"
 
-// import { useCart } from '../../../../context/CartContext';
 import ModalToBuy from '@/components/modals/ModalToBuy';
-import { contextProduct, contextVal } from '../../../../context/CartContext';
 import { useContext, useState } from "react";
 import CartView from '@/components/CartView';
 import { ShoppingBagIcon } from 'lucide-react';
@@ -37,9 +35,6 @@ import { Button } from '@/components/ui/button';
 // }
 
 const CartPage: React.FC = () => {
-
-  const { cartProducts } = useContext(contextProduct);
-  // const { cartItems, totalPrice, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
 
 
   const { cartItems, totalPrice, removeFromCart, increaseQuantity, decreaseQuantity } = useCartContext();
